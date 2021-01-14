@@ -1,0 +1,7 @@
+/mnt/d/mywork/newcsman/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/mywork/newcsman/build/CMakeFiles/edit_cache.dir
+/mnt/d/mywork/newcsman/build/CMakeFiles/csman.dir
+/mnt/d/mywork/newcsman/build/CMakeFiles/zip.dir
+/mnt/d/mywork/newcsman/build/imports/mozart/CMakeFiles/rebuild_cache.dir
+/mnt/d/mywork/newcsman/build/imports/mozart/CMakeFiles/edit_cache.dir
+/mnt/d/mywork/newcsman/build/imports/mozart/CMakeFiles/mozart.dir

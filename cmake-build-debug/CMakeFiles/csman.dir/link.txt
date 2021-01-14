@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/csman.dir/command.cpp.o -o csman  -lcurl imports/mozart/libmozart.a libzip.a 

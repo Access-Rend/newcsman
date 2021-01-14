@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="csman"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\imports\;CMake Files\imports\mozart\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="csman">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/csman" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/zip/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 csman"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="csman/fast">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/csman" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/zip/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 csman/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="zip">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/libzip.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/zip/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 zip"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="zip/fast">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/libzip.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/zip/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 zip/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mozart">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/libmozart.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 mozart"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mozart/fast">
+				<Option output="/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/libmozart.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/d/mywork/newcsman/include"/>
+					<Add directory="/mnt/d/mywork/newcsman/imports/mozart/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 mozart/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/d/mywork/newcsman/command.cpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/dir.hpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/global.hpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/http.hpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/idx.hpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/mozart/src/core.cpp">
+			<Option target="mozart"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/mozart/src/process.cpp">
+			<Option target="mozart"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/mozart/src/process_unix.cpp">
+			<Option target="mozart"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/mozart/src/process_win32.cpp">
+			<Option target="mozart"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/zip/zip.c">
+			<Option target="zip"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/localpac.hpp">
+			<Option target="csman"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/d/mywork/newcsman/imports/mozart/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\imports\mozart\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
