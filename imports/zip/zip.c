@@ -199,7 +199,7 @@ struct zip_t *zip_open(const char *zipname, int level, char mode) {
   case 'w':
     // Create a new archive.
     if (!mz_zip_writer_init_file(&(zip->archive), zipname, 0)) {
-      // Cannot initialize zip_archive writer
+      // Cannot initialize_var zip_archive writer
       goto cleanup;
     }
     break;
@@ -210,7 +210,7 @@ struct zip_t *zip_open(const char *zipname, int level, char mode) {
     if (!mz_zip_reader_init_file(
             &(zip->archive), zipname,
             zip->level | MZ_ZIP_FLAG_DO_NOT_SORT_CENTRAL_DIRECTORY)) {
-      // An archive file does not exist or cannot initialize
+      // An archive file does not exist or cannot initialize_var
       // zip_archive reader
       goto cleanup;
     }
@@ -386,7 +386,7 @@ int zip_entry_open(struct zip_t *zip, const char *entryname) {
                    (int)tdefl_create_comp_flags_from_zip_params(
                        (int)level, -15, MZ_DEFAULT_STRATEGY)) !=
         TDEFL_STATUS_OKAY) {
-      // Cannot initialize the zip compressor
+      // Cannot initialize_var the zip compressor
       goto cleanup;
     }
   }
@@ -822,7 +822,7 @@ int zip_create(const char *zipname, const char *filenames[], size_t len) {
   }
 
   if (!mz_zip_writer_init_file(&zip_archive, zipname, 0)) {
-    // Cannot initialize zip_archive writer
+    // Cannot initialize_var zip_archive writer
     return -1;
   }
 
@@ -1021,7 +1021,7 @@ int zip_extract(const char *zipname, const char *dir,
   }
   // Now try to open the archive.
   if (!mz_zip_reader_init_file(&zip_archive, zipname, 0)) {
-    // Cannot initialize zip_archive reader
+    // Cannot initialize_var zip_archive reader
     return MZ_FALSE;
   }
 
@@ -1043,7 +1043,7 @@ int zip_extract_stream(const char *stream, size_t size, const char *dir,
     return MZ_FALSE;
   }
   if (!mz_zip_reader_init_mem(&zip_archive, stream, size, 0)) {
-    // Cannot initialize zip_archive reader
+    // Cannot initialize_var zip_archive reader
     return MZ_FALSE;
   }
 

@@ -5477,7 +5477,7 @@ cleardir($LOGDIR);
 mkdir($LOGDIR, 0777);
 
 #######################################################################
-# initialize some variables
+# initialize_var some variables
 #
 
 get_disttests();

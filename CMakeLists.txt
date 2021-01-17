@@ -12,7 +12,7 @@ add_library(zip STATIC imports/zip/zip.c)
 
 ADD_COMPILE_OPTIONS("-g")
 
-add_executable(csman command.cpp idx.hpp localpac.hpp global.hpp http.hpp dir.hpp)
+add_executable(csman command.cpp idx.hpp pac_repo.hpp global.hpp http.hpp dir.hpp)
 
 target_link_libraries(csman curl mozart zip)
 

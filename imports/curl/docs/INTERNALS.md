@@ -180,7 +180,7 @@ Library
  put in the `lib/easy.c` file.
 
  `curl_global_init()` and `curl_global_cleanup()` should be called by the
- application to initialize and clean up global stuff in the library. As of
+ application to initialize_var and clean up global stuff in the library. As of
  today, it can handle the global SSL initing if SSL is enabled and it can init
  the socket layer on windows machines. libcurl itself has no "global" scope.
 

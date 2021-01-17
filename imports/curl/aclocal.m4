@@ -1006,7 +1006,7 @@ _AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
 # annoying in cross-compiling environments, where the build's strip
 # is unlikely to handle the host's binaries.
 # Fortunately install-sh will honor a STRIPPROG variable, so we
-# always use install-sh in "make install-strip", and initialize
+# always use install-sh in "make install-strip", and initialize_var
 # STRIPPROG with the value of the STRIP variable (set by the user).
 AC_DEFUN([AM_PROG_INSTALL_STRIP],
 [AC_REQUIRE([AM_PROG_INSTALL_SH])dnl

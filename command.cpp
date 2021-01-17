@@ -91,9 +91,9 @@ public:
 
         for (auto x : dep_set) {
             message.content("installing " + x.name + " " + x.ver + "...");
-            std::string dir_path = cxt->get_val(context::key::csman_pac_repo) + "/" + x.name + "/" + x.ver + "/";
+            std::string dir_path = cxt->pac_repo + "/" + x.name + "/" + x.ver + "/";
             std::string zip_path = dir_path + "pac.zip";
-            http_get(x.url, zip_path, std::stoi(cxt->get_val(context::key::max_reconnect_time)));
+            http_get(x.url, zip_path, cxt->max_reconnect_time);
             cov::zip_extract(zip_path, dir_path);
         }
         message.first("csman: install",object + " " + ver + " and it's dependencies successfully.");
@@ -122,7 +122,7 @@ public:
 
         for (auto x : sup_set) {
             message.content("uninstalling " + x.name + " " + x.ver + "...");
-            std::string del_path = cxt->get_val(context::key::csman_pac_repo) + "/" + x.name + "/" + x.ver;
+            std::string del_path = cxt->pac_repo + "/" + x.name + "/" + x.ver;
             std::remove(del_path.c_str());
         }
         message.first("csman: install",object + " " + ver + " and it's support successfully.");

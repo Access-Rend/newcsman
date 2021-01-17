@@ -515,7 +515,7 @@ int mz_deflateReset(mz_streamp pStream);
 
 // mz_deflate() compresses the input to output, consuming as much of the input
 // and producing as much output as possible. Parameters:
-//   pStream is the stream to read from and write to. You must initialize/update
+//   pStream is the stream to read from and write to. You must initialize_var/update
 //   the next_in, avail_in, next_out, and avail_out members. flush may be
 //   MZ_NO_FLUSH, MZ_PARTIAL_FLUSH/MZ_SYNC_FLUSH, MZ_FULL_FLUSH, or MZ_FINISH.
 // Return values:
@@ -564,7 +564,7 @@ int mz_inflateInit2(mz_streamp pStream, int window_bits);
 
 // Decompresses the input stream to the output, consuming only as much of the
 // input as needed, and writing as much to the output as possible. Parameters:
-//   pStream is the stream to read from and write to. You must initialize/update
+//   pStream is the stream to read from and write to. You must initialize_var/update
 //   the next_in, avail_in, next_out, and avail_out members. flush may be
 //   MZ_NO_FLUSH, MZ_SYNC_FLUSH, or MZ_FINISH. On the first call, if flush is
 //   MZ_FINISH it's assumed the input and output buffers are both sized large

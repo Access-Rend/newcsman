@@ -1,5 +1,0 @@
-{
-	"cs.runtime" : ["3.3.3.13","1.0.0.0"],
-	"cics.picasso" :["1.0"],
-	"cics.sqlite_ext" :["1.0"]
-}

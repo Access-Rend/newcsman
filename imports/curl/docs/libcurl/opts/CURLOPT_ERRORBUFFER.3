@@ -40,7 +40,7 @@ will need it until you call \fIcurl_easy_cleanup(3)\fP or you set the same
 option again to use a different pointer.
 
 Do not rely on the contents of the buffer unless an error code was returned.
-Since 7.60.0 libcurl will initialize the contents of the error buffer to an
+Since 7.60.0 libcurl will initialize_var the contents of the error buffer to an
 empty string before performing the transfer. For earlier versions if an error
 code was returned but there was no error detail then the buffer is untouched.
 

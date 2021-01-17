@@ -222,7 +222,7 @@
 		<Unit filename="/mnt/d/mywork/newcsman/imports/zip/zip.c">
 			<Option target="zip"/>
 		</Unit>
-		<Unit filename="/mnt/d/mywork/newcsman/localpac.hpp">
+		<Unit filename="/mnt/d/mywork/newcsman/pac_repo.hpp">
 			<Option target="csman"/>
 		</Unit>
 		<Unit filename="/mnt/d/mywork/newcsman/CMakeLists.txt">
