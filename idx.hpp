@@ -69,7 +69,7 @@ private:
             if (args[j] != "0") {
                 node_id[name][args[j]] = ++G.size;
                 G.node_data[G.size] = new rtm_data(name, args[j], args[j + 1], args[j + 2], args[j + 3]);
-                rtm_list.push_back(rtm_label(args[j + 1], args[j + 2], G.size));
+                rtm_list.push_back(rtm_label(args[j + 1], args[j + 2],args[j+3], G.size));
                 j += 3;
             } else
                 ++G.size;
@@ -132,6 +132,7 @@ private:
 
     std::string time;
 
+public:
     struct pac_data {
         std::string ver, url, name;
         int hash_value;
@@ -148,17 +149,16 @@ private:
     }; // 依赖图部分，点的数据类
 
     struct rtm_label {
-        std::string STD, ABI;
+        std::string STD, ABI, ver;
         int id;
-        rtm_label(const std::string &A, const std::string &S, const int &id)
-                : ABI(A), STD(S), id(id) {}
+        rtm_label(const std::string &A, const std::string &S, const std::string v, const int &id)
+                : ABI(A), STD(S), ver(v), id(id) {}
 
-        bool operator<(const rtm_label &rtm) const noexcept
-        {
-            if (STD != rtm.STD)
-                return STD < rtm.STD;
+        bool operator<(const rtm_label &r) const noexcept {
+            if (STD != r.STD)
+                return STD < r.STD;
             else
-                return ABI < rtm.ABI;
+                return ABI < r.ABI;
         }
     };// runtime标签,用于找runtime的
 
@@ -173,7 +173,7 @@ private:
                                          ABI(A), STD(S) {}
     }; // 依赖图部分，点数据的类
     /*使用:pac_info[name]*/
-public:
+private:
     std::unordered_map<std::string, std::vector<std::string> > pac_info; // 包的描述信息 : name, author, description
     /*使用:rtm_list.lower_bound(a_runtime)*/
     std::vector<rtm_label> rtm_list; // 用于寻找符合要求的runtime，默认idx文件给出的是单调的
@@ -216,7 +216,7 @@ public:
         std::vector<std::vector<edge> > head;
         std::vector<pac_data *> node_data;
         std::vector<bool> vis;
-        int size = 0;
+        int size = 0; // 0<size
 
         void init(int s) {
             head.resize(s + 5);
@@ -249,14 +249,14 @@ public:
             head[b].push_back(edge(a, 1));
         }
 
-        std::set<pac_data> depend_data(const int &u) {
+        std::set<pac_data> depend_node_set(const int &u) {
             std::set<pac_data> res;
             for (auto x : dfs_sc(u, 0))
                 res.insert(*node_data[x]);
             return res;
         }
 
-        std::set<pac_data> support_data(const int &u) {
+        std::set<pac_data> support_node_set(const int &u) {
             std::set<pac_data> res;
             for (auto x : dfs_sc(u, 1))
                 res.insert(*node_data[x]);
@@ -267,7 +267,25 @@ public:
 
     graph G;
 
-//    idx_file(const std::string &path) {
+    // 对外接口
+public:
+    std::string get_stable_ver(const std::string &name){
+        return this->un_stable_ver[name].second;
+    }
+    std::string get_unstable_ver(const std::string &name){
+        return this->un_stable_ver[name].first;
+    }
+    std::set<pac_data> get_depend_set(const std::string &name,const std::string &ver){
+        int id = this->node_id[name][ver];
+        if(id<=0 || id>G.size)  throw std::invalid_argument(name+" has no version named "+ver+".");
+        return G.depend_node_set(id);
+    }
+    std::set<pac_data> get_support_set(const std::string &name,const std::string &ver){
+        int id = this->node_id[name][ver];
+        if(id<=0 || id>G.size)  throw std::invalid_argument(name+" has no version named "+ver+".");
+        return G.support_node_set(id);
+    }
+
     idx_file(context *_cxt) : cxt(_cxt) {
         std::ifstream ifs(cxt->idx_path);
         if (!ifs.is_open())

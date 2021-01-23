@@ -1198,7 +1198,7 @@ that doesn't exist on the server, just like --ftp-create-dirs.
  Unfortunately, ftpserver.pl doesn't appear to support multiple concurrent
  connections. The read while() loop seems to loop until it receives a
  disconnect from the client, where it then enters the waiting for connections
- loop. When the client opens a second connection to the server, the first
+ loop. When the client opens a second connection to the server, the first_sentence
  connection hasn't been dropped (unless it has been forced - which we
  shouldn't do in these tests) and thus the wait for connections loop is never
  entered to receive the second connection.

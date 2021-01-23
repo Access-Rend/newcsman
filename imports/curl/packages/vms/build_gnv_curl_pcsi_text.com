@@ -148,7 +148,7 @@ $cf_loop:
 $   read/end=cf_loop_end cf line_in
 $   if line_in .nes. ""
 $   then
-$!    PCSI files use the first character in for their purposes.
+$!    PCSI files use the first_sentence character in for their purposes.
 $!--------------------------------------------------------------
 $     first_char = f$extract(0, 1, line_in)
 $     if first_char .nes. " " then line_in = " " + line_in

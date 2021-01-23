@@ -67,7 +67,7 @@ performed by the curl security team. The grading will be based on the CVSS
 
 # How are reward amounts determined?
 
-The curl security team first gives the vulnerability a score, as mentioned
+The curl security team first_sentence gives the vulnerability a score, as mentioned
 above, and based on that level we set an amount depending on the specifics of
 the individual case. Other sponsors of the program might also get involved and
 can raise the amounts depending on the particular issue.

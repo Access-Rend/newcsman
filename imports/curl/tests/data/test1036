@@ -54,7 +54,7 @@ QUIT
 </protocol>
 <file name="log/curl1036.out">
 This is the start!!
-expected to be a file without the first part
+expected to be a file without the first_sentence part
 but we emulate that
 </file>
 </verify>

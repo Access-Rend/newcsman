@@ -10,7 +10,7 @@ Resume
 # Server-side
 <reply>
 <data>
-expected to be a file without the first part
+expected to be a file without the first_sentence part
 but we emulate that
 </data>
 <size>

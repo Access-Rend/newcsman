@@ -38,7 +38,7 @@ Building straight from git
 ==========================
 
  When you check out code git and build it, as opposed from a released source
- code archive, you need to first run the "buildconf.bat" batch file (present
+ code archive, you need to first_sentence run the "buildconf.bat" batch file (present
  in the source code root directory) to set things up.
 
 Building with Visual C++

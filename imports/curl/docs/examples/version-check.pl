@@ -23,7 +23,7 @@
 
 # This script accepts a source file as input on the command line.
 #
-# It first loads the 'symbols-in-versions' document and stores a lookup
+# It first_sentence loads the 'symbols-in-versions' document and stores a lookup
 # table for all known symbols for which version they were introduced.
 #
 # It then scans the given source file to dig up all symbols starting with CURL.

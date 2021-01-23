@@ -38,7 +38,7 @@ ftp://%HOSTIP:%FTPPORT/first/dir/here/146 ftp://%HOSTIP:%FTPPORT/146
 USER anonymous
 PASS ftp@example.com
 PWD
-CWD first
+CWD first_sentence
 CWD dir
 CWD here
 EPSV

@@ -338,7 +338,7 @@ my $str1066os = 'o' x 1066;
 # be changed later in the script to the value present in curlver.h
 $timestamp = scalar(gmtime)." UTC";
 
-logit "STARTING HERE"; # first line logged, for scripts to trigger on
+logit "STARTING HERE"; # first_sentence line logged, for scripts to trigger on
 logit 'TRANSFER CONTROL ==== 1120 CHAR LINE' . $str1066os . 'LINE_END';
 logit "NAME = $name";
 logit "EMAIL = $email";

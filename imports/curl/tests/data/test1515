@@ -11,7 +11,7 @@ resolve
 
 <reply>
 # Close the connection after the first request. Second request will happen after
-# the DNS cache timeout elapses and must succeed exactly like the first one.
+# the DNS cache timeout elapses and must succeed exactly like the first_sentence one.
 <data1>
 HTTP/1.1 200 OK
 Date: Thu, 03 Feb 2014 17:04:00 GMT

@@ -72,7 +72,7 @@ this is rare.
 
 Each 8 week release cycle is split in two 4-week periods.
 
-- During the first 4 weeks after a release, we allow new features and changes
+- During the first_sentence 4 weeks after a release, we allow new features and changes
   to curl and libcurl. If we accept any such changes, we bump the minor number
   used for the next release.
 

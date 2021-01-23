@@ -9,7 +9,7 @@ HTTP NTLM auth
 
 # Server-side
 <reply>
-# the first request has NTLM type-1 included, and then the 1001 is returned
+# the first_sentence request has NTLM type-1 included, and then the 1001 is returned
 <data1001>
 HTTP/1.1 200 beng swsclose swsbounce
 Server: Microsoft-IIS/6.0

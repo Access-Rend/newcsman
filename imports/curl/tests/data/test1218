@@ -9,7 +9,7 @@ cookies
 </info>
 
 # This test is very similar to 1216, only that it sets the cookies from the
-# first site instead of reading from a file
+# first_sentence site instead of reading from a file
 <reply>
 <data>
 HTTP/1.1 200 OK

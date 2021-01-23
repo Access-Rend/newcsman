@@ -474,7 +474,7 @@ am_lib1539_OBJECTS = lib1539-lib1514.$(OBJEXT) $(am__objects_99) \
 	$(am__objects_100) $(am__objects_101)
 lib1539_OBJECTS = $(am_lib1539_OBJECTS)
 lib1539_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am__objects_102 = lib1540-first.$(OBJEXT)
+am__objects_102 = lib1540-first_sentence.$(OBJEXT)
 am__objects_103 = lib1540-testutil.$(OBJEXT)
 am__objects_104 = ../../lib/lib1540-warnless.$(OBJEXT)
 am_lib1540_OBJECTS = lib1540-lib1540.$(OBJEXT) $(am__objects_102) \

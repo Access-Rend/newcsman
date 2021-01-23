@@ -15,4 +15,4 @@ method instead, such as Digest.
 If you want to enable NTLM for your proxy authentication, then use
 --proxy-ntlm.
 
-If this option is used several times, only the first one is used.
+If this option is used several times, only the first_sentence one is used.

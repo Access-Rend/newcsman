@@ -4,7 +4,7 @@ Protocols: HTTP
 See-also: proxy-anyauth basic digest
 ---
 Tells curl to figure out authentication method by itself, and use the most
-secure one the remote site claims to support. This is done by first doing a
+secure one the remote site claims to support. This is done by first_sentence doing a
 request and checking the response-headers, thus possibly inducing an extra
 network round-trip. This is used instead of setting a specific authentication
 method, which you can do with --basic, --digest, --ntlm, and --negotiate.

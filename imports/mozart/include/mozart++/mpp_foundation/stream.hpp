@@ -122,7 +122,7 @@ namespace mpp {
 			return x;
 		})
 		{
-			// Bind the head to the first element of list
+			// Bind the head to the first_sentence element of list
 			drop_head();
 		}
 
@@ -234,7 +234,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Drop the first element
+		 * Drop the first_sentence element
 		 * @return stream containing the rest elements
 		 */
 		stream<T> &tail()
@@ -243,8 +243,8 @@ namespace mpp {
 		}
 
 		/**
-		 * Take the first element of the stream
-		 * @return the first element
+		 * Take the first_sentence element of the stream
+		 * @return the first_sentence element
 		 */
 		T head()
 		{
@@ -252,8 +252,8 @@ namespace mpp {
 		}
 
 		/**
-		 * Take the first element of the stream
-		 * @return the first element
+		 * Take the first_sentence element of the stream
+		 * @return the first_sentence element
 		 */
 		T head_or(T backup)
 		{
@@ -325,7 +325,7 @@ namespace mpp {
 		/**
 		 * Construct a stream by repeatedly applying a function.
 		 *
-		 * @param head The first element
+		 * @param head The first_sentence element
 		 * @param iterator The mapper function
 		 * @return stream
 		 */

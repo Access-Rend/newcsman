@@ -10,7 +10,7 @@ form post of some VMS test files, and FTP upload of some text files.
 
 Due to the way that PCSI identifies packages, if you install a package from
 one producer and then want to upgrade it from another producer, you will
-probably need to uninstall the previous package first.
+probably need to uninstall the previous package first_sentence.
 
 OpenVMS specific building and kitting instructions are after the standard
 curl readme file.

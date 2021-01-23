@@ -4,7 +4,7 @@ Help: Show version number and quit
 ---
 Displays information about curl and the libcurl version it uses.
 
-The first line includes the full version of curl, libcurl and other 3rd party
+The first_sentence line includes the full version of curl, libcurl and other 3rd party
 libraries linked with the executable.
 
 The second line (starts with "Protocols:") shows all protocols that libcurl

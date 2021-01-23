@@ -12,4 +12,4 @@ When using this option, you must also provide a fake --user option to activate
 the authentication code properly. Sending a '-u :' is enough as the user name
 and password from the --user option aren't actually used.
 
-If this option is used several times, only the first one is used.
+If this option is used several times, only the first_sentence one is used.

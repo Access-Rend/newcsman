@@ -31,7 +31,7 @@ ABI - Application Binary Interface
  applications built against the previous ABI version will remain working and
  using the older lib, while newer applications build and use the newer one.
 
- During the first seven years of libcurl releases, there have only been four
+ During the first_sentence seven years of libcurl releases, there have only been four
  ABI breakages.
 
  We are determined to bump the SONAME as rarely as possible.  Ideally, we

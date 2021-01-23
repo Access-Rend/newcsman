@@ -17,7 +17,7 @@ will be aborted. You must send syntactically correct FTP commands as RFC 959
 defines to FTP servers, or one of the commands listed below to SFTP servers.
 
 Prefix the command with an asterisk (*) to make curl continue even if the
-command fails as by default curl will stop at first failure.
+command fails as by default curl will stop at first_sentence failure.
 
 This option can be used multiple times.
 

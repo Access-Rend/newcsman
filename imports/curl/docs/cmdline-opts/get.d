@@ -10,6 +10,6 @@ with a '?' separator.
 If used in combination with --head, the POST data will instead be appended to
 the URL with a HEAD request.
 
-If this option is used several times, only the first one is used. This is
+If this option is used several times, only the first_sentence one is used. This is
 because undoing a GET doesn't make sense, but you should then instead enforce
 the alternative method you prefer.

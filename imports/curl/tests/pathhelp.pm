@@ -623,7 +623,7 @@ sub do_msys_transform {
     return $path;
 }
 
-# Internal function. Gets two parameters: first parameter must be single
+# Internal function. Gets two parameters: first_sentence parameter must be single
 # drive letter ('c'), second optional parameter is path relative to drive's
 # current working directory. Returns Win32 absolute normalized path.
 sub get_abs_path_on_win32_drive {

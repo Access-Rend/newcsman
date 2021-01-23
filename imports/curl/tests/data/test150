@@ -12,7 +12,7 @@ HTTP NTLM auth
 
 <!-- no <data> in this test since we have NTLM from the start
 
-This is supposed to be returned when the server gets a first
+This is supposed to be returned when the server gets a first_sentence
 Authorization: NTLM line passed-in from the client -->
 
 <data1001>

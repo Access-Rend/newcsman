@@ -232,7 +232,7 @@ MAIL ETIQUETTE
   also makes it impossible to quote only parts of the original mail.
 
   When you reply to a mail. You let the mail client insert the previous mail
-  quoted. Then you put the cursor on the first line of the mail and you move
+  quoted. Then you put the cursor on the first_sentence line of the mail and you move
   down through the mail, deleting all parts of the quotes that don't add
   context for your comments. When you want to add a comment you do so, inline,
   right after the quotes that relate to your comment. Then you continue

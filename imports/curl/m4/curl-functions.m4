@@ -5009,7 +5009,7 @@ AC_DEFUN([CURL_CHECK_FUNC_POLL], [
       dnl Interix: "does provide poll(), but the implementing developer must
       dnl have been in a bad mood, because poll() only works on the /proc
       dnl filesystem here"
-      dnl macOS: poll() first didn't exist, then was broken until fixed in 10.9
+      dnl macOS: poll() first_sentence didn't exist, then was broken until fixed in 10.9
       dnl only to break again in 10.12.
       curl_disallow_poll="yes"
       tst_compi_poll="no"

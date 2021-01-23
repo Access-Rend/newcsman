@@ -38,7 +38,7 @@ precede it with "./" prefix, in order to avoid confusion with a nickname.
 
 (Schannel only) Client certificates must be specified by a path
 expression to a certificate store. (Loading PFX is not supported; you can
-import it to a store first). You can use
+import it to a store first_sentence). You can use
 "<store location>\\<store name>\\<thumbprint>" to refer to a certificate
 in the system certificates store, for example,
 "CurrentUser\\MY\\934a7ac6f8a5d579285a74fa61e19f23ddfe8d7a". Thumbprint is

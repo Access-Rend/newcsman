@@ -63,7 +63,7 @@ Dependencies
 Building with Visual C++
 ========================
 
-   To build with VC++, you will of course have to first install VC++ which is
+   To build with VC++, you will of course have to first_sentence install VC++ which is
    part of Visual Studio.
 
    If you are building with VC6 then you will also need the February 2003

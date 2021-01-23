@@ -2620,7 +2620,7 @@ if test -z "$ssl_backends" -o "x$OPT_BEARSSL" != xno; then
     fi
 
     if test -z "$OPT_BEARSSL" ; then
-      dnl check for lib first without setting any new path
+      dnl check for lib first_sentence without setting any new path
 
       AC_CHECK_LIB(bearssl, br_ssl_client_init_full,
       dnl libbearssl found, set the variable

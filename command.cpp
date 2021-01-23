@@ -18,11 +18,11 @@ private:
     std::set<std::string> opt;  // 从args里分离出的可选参数，例如-r
     std::string predicate, object;  // 谓语，宾语
 
-    inline bool y_or_n(){
+    inline bool y_or_n() {
         static char c = '#';
         std::cout << '>';
-        while (c != 'y' && c != 'Y' && c != 'n' && c != 'N'){
-            std::cout<<"please type \'y\' or \'n\'."<<std::endl;
+        while (c != 'y' && c != 'Y' && c != 'n' && c != 'N') {
+            std::cout << "please type \'y\' or \'n\'." << std::endl;
             std::cin >> c;
         }
         return (c == 'y' || c == 'Y');
@@ -39,12 +39,14 @@ private:
 
     struct {
         std::string title;
-        inline void first(const std::string &_title, const std::string &_content) {
+
+        inline void first_sentence(const std::string &_title, const std::string &_content) {
             title = _title;
             std::cout << title << '\t' << _content << std::endl;
         }
+
         inline void content(const std::string &_content) {
-            std::cout<<'\t' << _content << std::endl;
+            std::cout << '\t' << _content << std::endl;
         }
     } message;
 
@@ -72,63 +74,47 @@ public:
 
     void install() {
         std::string ver;
-        if (args.size() <= 2)
-            ver = idx.un_stable_ver[object].second;
+        if (args.size() <= 2) ver = idx.get_stable_ver(object);
+        else if (args[2] == "stable") ver = idx.get_stable_ver(object);
+        else if (args[2] == "unstable") ver = idx.get_unstable_ver(object);
         else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
         else ver = args[2];
 
-        int id = idx.node_id[object][ver];
-        if (id <= 0 || id >= idx.G.size)throw std::invalid_argument("this version of package has not found.");
-
-        auto dep_set = idx.G.depend_data(id);
-        message.first("csman:", "installing " + object + " " + ver +
-                                " needs to install these packages all because of dependencies:");
-        for (auto x: dep_set)
-            message.content(x.name + " " + x.ver);
-        message.first("do you want to install them all?","[y/n]");
-        if(!y_or_n()){
-            message.first("csman:", "operation interrupted by user.");
-            return ;
+        try {
+            // 获取依赖
+            auto dep_set = idx.get_depend_set(object, ver);
+            message.first_sentence("csman:", "installing " + object + " " + ver +
+                                             " needs to install these packages all because of dependencies:");
+            for (auto x: dep_set)
+                message.content(x.name + " " + x.ver);
+            message.first_sentence("do you want to install them all?", "[y/n]");
+            // 是否安装?
+            if (!y_or_n()) { // 否
+                message.first_sentence("csman:", "operation interrupted by user.");
+                return;
+            }
+            // 是 进入安装
+            for (auto x : dep_set) {
+                message.content("installing " + x.name + " " + x.ver + "...");
+                std::string dir_path = cxt->pac_repo + "/" + x.name + "/" + x.ver + "/";
+                std::string zip_path = dir_path + "pac.zip";
+                http_get(x.url, zip_path, cxt->max_reconnect_time);
+                cov::zip_extract(zip_path, dir_path);
+            }
+            message.first_sentence("csman: install", object + " " + ver + " and it's dependencies successfully.");
         }
-
-
-        for (auto x : dep_set) {
-            message.content("installing " + x.name + " " + x.ver + "...");
-            std::string dir_path = cxt->pac_repo + "/" + x.name + "/" + x.ver + "/";
-            std::string zip_path = dir_path + "pac.zip";
-            http_get(x.url, zip_path, cxt->max_reconnect_time);
-            cov::zip_extract(zip_path, dir_path);
+        catch(std::exception &e){
+            throw e;
         }
-        message.first("csman: install",object + " " + ver + " and it's dependencies successfully.");
     }
 
     void uninstall() {
         std::string ver;
-        if (args.size() < 2)
-            ver = idx.un_stable_ver[object].second; //应该换成从local_pac找已装包而不是去找stable
-        else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
-        else ver = args[2];
-
-        int id = idx.node_id[object][ver]; //应该换成从local_pac找已装包而不是去找stable
-        if (id <= 0 || id >= idx.G.size)throw std::invalid_argument("this version of package has not found.");
-        auto sup_set = idx.G.depend_data(id);
-
-        message.first("csman:", "uninstalling " + object + " " + ver +
-                                " needs to uninstall these packages all because of dependencies:");
-        for (auto x: sup_set)
-            message.content(x.name + " " + x.ver);
-        message.first("do you want to uninstall them all?","[y/n]");
-        if(!y_or_n()){
-            message.first("csman:", "operation interrupted by user.");
-            return ;
-        }
-
-        for (auto x : sup_set) {
-            message.content("uninstalling " + x.name + " " + x.ver + "...");
-            std::string del_path = cxt->pac_repo + "/" + x.name + "/" + x.ver;
-            std::remove(del_path.c_str());
-        }
-        message.first("csman: install",object + " " + ver + " and it's support successfully.");
+//        if (args.size() <= 2) ver = idx.get_stable_ver(object); 以下寻找包版本,均应替换为pac_repo的接口,例: pac_repo.get_current_runtime_ver()
+//        else if (args[2] == "stable") ver = idx.get_stable_ver(object);
+//        else if (args[2] == "unstable") ver = idx.get_unstable_ver(object);
+//        else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
+//        else ver = args[2];
     }
 
     void config() {

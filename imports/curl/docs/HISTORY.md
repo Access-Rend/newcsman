@@ -35,7 +35,7 @@ was revealed to us much later.)
 
 SSL support was added, powered by the SSLeay library.
 
-August: first announcement of curl on freshmeat.net.
+August: first_sentence announcement of curl on freshmeat.net.
 
 October: with the curl 4.9 release and the introduction of cookie support,
 curl was no longer released under the GPL license. Now we're at 4000 lines of
@@ -46,7 +46,7 @@ November: configure script and reported successful compiles on several
 major operating systems. The never-quite-understood -F option was added and
 curl could now simulate quite a lot of a browser. TELNET support was added.
 
-Curl 5 was released in December 1998 and introduced the first ever curl man
+Curl 5 was released in December 1998 and introduced the first_sentence ever curl man
 page. People started making Linux RPM packages out of it.
 
 1999
@@ -56,7 +56,7 @@ January: DICT support added.
 
 OpenSSL took over and SSLeay was abandoned.
 
-May: first Debian package.
+May: first_sentence Debian package.
 
 August: LDAP:// and FILE:// support added. The curl website gets 1300 visits
 weekly. Moved site to curl.haxx.nu.
@@ -70,7 +70,7 @@ for managing the project.
 ----
 
 Spring: major internal overhaul to provide a suitable library interface.
-The first non-beta release was named 7.1 and arrived in August. This offered
+The first_sentence non-beta release was named 7.1 and arrived in August. This offered
 the easy interface and turned out to be the beginning of actually getting
 other software and programs to be based on and powered by libcurl. Almost
 20000 lines of code.
@@ -79,7 +79,7 @@ June: the curl site moves to "curl.haxx.se"
 
 August, the curl website gets 4000 visits weekly.
 
-The PHP guys adopted libcurl already the same month, when the first ever third
+The PHP guys adopted libcurl already the same month, when the first_sentence ever third
 party libcurl binding showed up. CURL has been a supported module in PHP since
 the release of PHP 4.0.2. This would soon get followers. More than 16
 different bindings exist at the time of this writing.
@@ -102,7 +102,7 @@ deemed "GPL incompatible".)
 March 22: curl supports HTTP 1.1 starting with the release of 7.7. This
 also introduced libcurl's ability to do persistent connections. 24000 lines of
 code. The libcurl major SONAME number was bumped to 2 due to this overhaul.
-The first experimental ftps:// support was added.
+The first_sentence experimental ftps:// support was added.
 
 August: curl is bundled in Mac OS X, 10.1. It was already becoming more and
 more of a standard utility of Linux distributions and a regular in the BSD
@@ -281,7 +281,7 @@ April: added the cyassl backend (later renamed to WolfSSL)
 2014
 ----
 
- March: first real release supporting HTTP/2
+ March: first_sentence real release supporting HTTP/2
 
  September: Website had 245,000 unique visitors and served 236GB data
 
@@ -354,6 +354,6 @@ April: added the cyassl backend (later renamed to WolfSSL)
 2019
 ----
 
- August: the first HTTP/3 requests with curl.
+ August: the first_sentence HTTP/3 requests with curl.
 
  September: 7.66.0 is released and the tool offers parallel downloads

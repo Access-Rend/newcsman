@@ -49,7 +49,7 @@ Content-Length: 4
 boo
 </data1003>
 
-# This is the first reply after the redirection
+# This is the first_sentence reply after the redirection
 <data1011>
 HTTP/1.1 200 OK
 Server: Microsoft-IIS/5.0

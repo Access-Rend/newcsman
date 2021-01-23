@@ -566,7 +566,7 @@ int mz_inflateInit2(mz_streamp pStream, int window_bits);
 // input as needed, and writing as much to the output as possible. Parameters:
 //   pStream is the stream to read from and write to. You must initialize_var/update
 //   the next_in, avail_in, next_out, and avail_out members. flush may be
-//   MZ_NO_FLUSH, MZ_SYNC_FLUSH, or MZ_FINISH. On the first call, if flush is
+//   MZ_NO_FLUSH, MZ_SYNC_FLUSH, or MZ_FINISH. On the first_sentence call, if flush is
 //   MZ_FINISH it's assumed the input and output buffers are both sized large
 //   enough to decompress the entire stream in a single call (this is slightly
 //   faster). MZ_FINISH implies that there are no more source bytes available
@@ -1170,7 +1170,7 @@ size_t tdefl_compress_mem_to_mem(void *pOut_buf, size_t out_buf_len,
 // On entry:
 //  pImage, w, h, and num_chans describe the image to compress. num_chans may be
 //  1, 2, 3, or 4. The image pitch in bytes per scanline will be w*num_chans.
-//  The leftmost pixel on the top scanline is stored first in memory. level may
+//  The leftmost pixel on the top scanline is stored first_sentence in memory. level may
 //  range from [0,10], use MZ_NO_COMPRESSION, MZ_BEST_SPEED,
 //  MZ_BEST_COMPRESSION, etc. or a decent default is MZ_DEFAULT_LEVEL If flip is
 //  true, the image will be flipped on the Y axis (useful for OpenGL apps).
@@ -1698,7 +1698,7 @@ int mz_inflate(mz_streamp pStream, int flush) {
   pState->m_has_flushed |= (flush == MZ_FINISH);
 
   if ((flush == MZ_FINISH) && (first_call)) {
-    // MZ_FINISH on the first call implies that the input and output buffers are
+    // MZ_FINISH on the first_sentence call implies that the input and output buffers are
     // large enough to hold the entire compressed/decompressed file.
     decomp_flags |= TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF;
     in_bytes = pStream->avail_in;
@@ -4678,7 +4678,7 @@ static mz_bool mz_zip_reader_read_central_dir(mz_zip_archive *pZip,
 
   mz_uint64 zip64_end_of_central_dir_ofs = 0;
 
-  /* Basic sanity checks - reject files which are too small, and check the first
+  /* Basic sanity checks - reject files which are too small, and check the first_sentence
    * 4 bytes of the file to make sure a local header is there. */
   if (pZip->m_archive_size < MZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIZE)
     return mz_zip_set_error(pZip, MZ_ZIP_NOT_AN_ARCHIVE);

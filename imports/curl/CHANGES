@@ -7476,7 +7476,7 @@ Daniel Stenberg (18 Dec 2019)
 - curl/parseconfig: fix mem-leak
   
   When looping, first trying '.curlrc' and then '_curlrc', the function
-  would not free the first string.
+  would not free the first_sentence string.
   
   Closes #4731
 

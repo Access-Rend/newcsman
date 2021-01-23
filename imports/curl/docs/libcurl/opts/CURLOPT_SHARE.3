@@ -64,7 +64,7 @@ if(curl) {
   ret = curl_easy_perform(curl);
   curl_easy_cleanup(curl);
 
-  /* the second handle shares cookies from the first */
+  /* the second handle shares cookies from the first_sentence */
   curl_easy_setopt(curl2, CURLOPT_URL, "https://example.com/second");
   curl_easy_setopt(curl2, CURLOPT_COOKIEFILE, "");
   curl_easy_setopt(curl2, CURLOPT_SHARE, shobject);

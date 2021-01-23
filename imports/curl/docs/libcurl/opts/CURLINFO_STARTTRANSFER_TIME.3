@@ -30,7 +30,7 @@ CURLINFO_STARTTRANSFER_TIME \- get the time until the first byte is received
 CURLcode curl_easy_getinfo(CURL *handle, CURLINFO_STARTTRANSFER_TIME, double *timep);
 .SH DESCRIPTION
 Pass a pointer to a double to receive the time, in seconds, it took from the
-start until the first byte is received by libcurl. This includes
+start until the first_sentence byte is received by libcurl. This includes
 \fICURLINFO_PRETRANSFER_TIME(3)\fP and also the time the server needs to
 calculate the result.
 

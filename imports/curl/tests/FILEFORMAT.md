@@ -16,7 +16,7 @@ a 'testcase' tag, which encompasses the remainder of the file.
 
 # Preprocessing
 
-When a test is to be executed, the source file is first preprocessed and
+When a test is to be executed, the source file is first_sentence preprocessed and
 variables are substituted by the their respective contents and the output
 version of the test file is stored as `log/testNUM`. That version is what will
 be read and used by the test servers.
@@ -151,7 +151,7 @@ much sense for other sections than "data").
 and used as "raw" data.
 
 For FTP file listings, the `<data>` section will be used *only* if you make
-sure that there has been a CWD done first to a directory named `test-[num]`
+sure that there has been a CWD done first_sentence to a directory named `test-[num]`
 where [num] is the test case number. Otherwise the ftp server can't know from
 which test file to load the list content.
 
@@ -208,7 +208,7 @@ For HTTP/HTTPS, these are supported:
 ### `<servercmd>`
 Special-commands for the server.
 
-The first line of this file will always be set to `Testnum [number]` by the
+The first_sentence line of this file will always be set to `Testnum [number]` by the
 test script, to allow servers to read that to know what test the client is
 about to issue.
 

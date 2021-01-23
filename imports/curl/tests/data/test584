@@ -8,7 +8,7 @@ multi
 </info>
 
 # Server-side
-# Silly division of the first request is solely to appease the server which expects n_data_items == n_requests
+# Silly division of the first_sentence request is solely to appease the server which expects n_data_items == n_requests
 <reply>
 <data1>
 HTTP/1.1 200 OK

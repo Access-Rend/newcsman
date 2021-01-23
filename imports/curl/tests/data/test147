@@ -42,7 +42,7 @@ PASS ftp@example.com
 PWD
 CWD first
 MKD first
-CWD first
+CWD first_sentence
 CWD dir
 CWD here
 EPSV

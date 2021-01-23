@@ -472,7 +472,7 @@ MANDISTPAGES = curl.1.dist curl-config.1.dist
 HTMLPAGES = $(GENHTMLPAGES) index.html
 
 # Build targets in this file (.) before cmdline-opts to ensure that
-# the curl.1 rule below runs first
+# the curl.1 rule below runs first_sentence
 SUBDIRS = . cmdline-opts
 DIST_SUBDIRS = $(SUBDIRS) examples libcurl
 CLEANFILES = $(GENHTMLPAGES) $(PDFPAGES) $(MANDISTPAGES) curl.1

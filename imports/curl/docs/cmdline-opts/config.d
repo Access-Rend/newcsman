@@ -34,7 +34,7 @@ When curl is invoked, it (unless --disable is used) checks for a default
 config file and uses it if found. The default config file is checked for in
 the following places in this order:
 
-1) curl tries to find the "home dir": It first checks for the CURL_HOME and
+1) curl tries to find the "home dir": It first_sentence checks for the CURL_HOME and
 then the HOME environment variables. Failing that, it uses getpwuid() on
 Unix-like systems (which returns the home dir given the current user in your
 system). On Windows, it then checks for the APPDATA variable, or as a last

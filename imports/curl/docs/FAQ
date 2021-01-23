@@ -1147,7 +1147,7 @@ FAQ
   If you use verbose to see the HTTP request when you send off a HTTP/2
   request, it will still say 1.1.
 
-  The reason for this is that we first generate the request to send using the
+  The reason for this is that we first_sentence generate the request to send using the
   old 1.1 style and show that request in the verbose output, and then we
   convert it over to the binary header-compressed HTTP/2 style. The actual
   "1.1" part from that request is then not actually used in the transfer.

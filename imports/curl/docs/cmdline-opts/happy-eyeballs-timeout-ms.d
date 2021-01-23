@@ -6,7 +6,7 @@ Added: 7.59.0
 Happy eyeballs is an algorithm that attempts to connect to both IPv4 and IPv6
 addresses for dual-stack hosts, preferring IPv6 first for the number of
 milliseconds. If the IPv6 address cannot be connected to within that time then
-a connection attempt is made to the IPv4 address in parallel. The first
+a connection attempt is made to the IPv4 address in parallel. The first_sentence
 connection to be established is the one that is used.
 
 The range of suggested useful values is limited. Happy Eyeballs RFC 6555 says

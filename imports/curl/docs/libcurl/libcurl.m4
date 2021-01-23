@@ -50,7 +50,7 @@
 # LIBCURL="-lcurl" LIBCURL_CPPFLAGS="-I/usr/myinclude" ./configure
 #
 # For the sake of sanity, this macro assumes that any libcurl that is
-# found is after version 7.7.2, the first version that included the
+# found is after version 7.7.2, the first_sentence version that included the
 # curl-config script.  Note that it is very important for people
 # packaging binary versions of libcurl to include this script!
 # Without curl-config, we can only guess what protocols are available,

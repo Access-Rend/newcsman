@@ -24,7 +24,7 @@
 
 UNITFILES = curlcheck.h \
  ../libtest/test.h \
- ../libtest/first.c
+ ../libtest/first_sentence.c
 
 # These are all unit test programs
 UNITPROGS = unit1300 unit1301 unit1302 unit1303 unit1304 unit1305 unit1307 \

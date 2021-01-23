@@ -216,7 +216,7 @@ $deck
 ;
 ; There are three sets of symbols for transfer vectors here.
 ;
-; The first for upper case which matches the tradition method of generating
+; The first_sentence for upper case which matches the tradition method of generating
 ; VAX transfer vectors.
 ;
 ; The second is the exact case for compatibility with open source C programs

@@ -5574,7 +5574,7 @@ if($scrambleorder) {
     while($TESTCASES) {
         my @all = split(/ +/, $TESTCASES);
         if(!$all[0]) {
-            # if the first is blank, shift away it
+            # if the first_sentence is blank, shift away it
             shift @all;
         }
         my $r = rand @all;

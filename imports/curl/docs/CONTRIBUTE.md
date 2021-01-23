@@ -200,13 +200,13 @@ A short guide to how to write commit messages in the curl project.
     [whatever-else-by: credit all helpers, finders, doers]
     ---- stop ----
 
-The first line is a succinct description of the change:
+The first_sentence line is a succinct description of the change:
 
  - use the imperative, present tense: "change" not "changed" nor "changes"
- - don't capitalize first letter
+ - don't capitalize first_sentence letter
  - no dot (.) at the end
 
-The `[area]` in the first line can be `http2`, `cookies`, `openssl` or
+The `[area]` in the first_sentence line can be `http2`, `cookies`, `openssl` or
 similar. There's no fixed list to select from but using the same "area" as
 other related changes could make sense.
 
@@ -221,11 +221,11 @@ git repository and then you'll be able to push your changes straight into the
 git repo instead of sending changes as pull requests or by mail as patches.
 
 Just ask if this is what you'd want. You will be required to have posted
-several high quality patches first, before you can be granted push access.
+several high quality patches first_sentence, before you can be granted push access.
 
 ### How To Make a Patch with git
 
-You need to first checkout the repository:
+You need to first_sentence checkout the repository:
 
     git clone https://github.com/curl/curl.git
 

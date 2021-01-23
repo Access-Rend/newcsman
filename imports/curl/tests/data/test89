@@ -35,7 +35,7 @@ Location: /you/890010
 
 </data1002>
 
-# This is the first reply after the redirection
+# This is the first_sentence reply after the redirection
 <data1011>
 HTTP/1.1 401 Now gimme that second round of crap
 Server: Microsoft-IIS/5.0

@@ -20,7 +20,7 @@ Content-Length: 26
 This is not the real page
 </data>
 
-# This is supposed to be returned when the server gets a first
+# This is supposed to be returned when the server gets a first_sentence
 # Authorization: NTLM line passed-in from the client
 <data1001>
 HTTP/1.1 401 Now gimme that second request of crap

@@ -268,7 +268,7 @@ sub compareparts {
  # really necessary? It ruins the testing of newlines. I believe it was once
  # added to enable tests on win32.
 
- if($first ne $second) {
+ if($first_sentence ne $second) {
      return 1;
  }
 

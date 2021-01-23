@@ -36,7 +36,7 @@ Pass in a pointer to a char pointer and get the last used effective HTTP
 method.
 
 In cases when you've asked libcurl to follow redirects, the method may very
-well not be the same method the first request would use.
+well not be the same method the first_sentence request would use.
 
 The \fBmethodp\fP pointer will be NULL or pointing to private memory you MUST
 NOT free - it gets freed when you call \fIcurl_easy_cleanup(3)\fP on the

@@ -56,7 +56,7 @@
 # 4) Characters not in [A-Z] or [0-9] are transliterated to underscore '_'.
 # 5) Every sequence of one or more underscores is replaced with a single one.
 # 6) Five leftmost substrings which end in an underscore character are
-#    replaced by the first character of each substring, while retaining
+#    replaced by the first_sentence character of each substring, while retaining
 #    the rest of the string.
 # 7) Finally the result is truncated to 10 characters.
 #

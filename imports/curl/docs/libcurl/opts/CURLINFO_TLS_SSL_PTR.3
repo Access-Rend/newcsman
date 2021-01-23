@@ -97,7 +97,7 @@ longer associated with the easy handle (eg curl_easy_perform has returned).
 This option has some limitations that could make it unsafe when it comes to
 the manual verification of certificates.
 
-This option only retrieves the first in-use SSL session pointer for your easy
+This option only retrieves the first_sentence in-use SSL session pointer for your easy
 handle, however your easy handle may have more than one in-use SSL session if
 using FTP over SSL. That is because the FTP protocol has a control channel and
 a data channel and one or both may be over SSL. Currently there is no way to

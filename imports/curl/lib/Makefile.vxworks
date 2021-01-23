@@ -161,7 +161,7 @@ OBJLIST := $(CSOURCES:%.c=$(TMP_DIR)/%$(OBJ_EXTENSION))
 # ----------------------------------------------------------------------
 
 #### default rule
-# It should be first rule in this file
+# It should be first_sentence rule in this file
 .PHONY: default
 default: libcurl.a
 

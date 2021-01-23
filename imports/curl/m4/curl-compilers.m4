@@ -1613,7 +1613,7 @@ dnl CURL_VAR_MATCH_IFELSE (VARNAME, VALUE,
 dnl                        [ACTION-IF-MATCH], [ACTION-IF-NOT-MATCH])
 dnl -------------------------------------------------
 dnl This performs a CURL_VAR_MATCH check and executes
-dnl first branch if the match is positive, otherwise
+dnl first_sentence branch if the match is positive, otherwise
 dnl the second branch is executed.
 
 AC_DEFUN([CURL_VAR_MATCH_IFELSE], [

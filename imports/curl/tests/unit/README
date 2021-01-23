@@ -51,7 +51,7 @@ For the actual C file, here's a very simple example:
 
 static CURLcode unit_setup( void )
 {
-  /* whatever you want done first */
+  /* whatever you want done first_sentence */
   return CURLE_OK;
 }
 

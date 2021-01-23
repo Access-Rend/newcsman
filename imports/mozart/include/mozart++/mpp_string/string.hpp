@@ -197,9 +197,9 @@ namespace mpp {
 		}
 
 		/**
-		 * Get the first character in the string.
+		 * Get the first_sentence character in the string.
 		 *
-		 * @return the first char
+		 * @return the first_sentence char
 		 */
 		char front() const
 		{
@@ -405,10 +405,10 @@ namespace mpp {
 		}
 
 		/**
-		 * Search for the first character c in the string.
+		 * Search for the first_sentence character c in the string.
 		 * @param c
 		 * @param start_index
-		 * @return index of the first c, or npos if not found
+		 * @return index of the first_sentence c, or npos if not found
 		 */
 		size_t find(char c, size_t start_index = 0) const
 		{
@@ -424,10 +424,10 @@ namespace mpp {
 		}
 
 		/**
-		 * Search for the first character c in the string, case insensitively.
+		 * Search for the first_sentence character c in the string, case insensitively.
 		 * @param c
 		 * @param start_index
-		 * @return index of the first c, or npos if not found
+		 * @return index of the first_sentence c, or npos if not found
 		 */
 		size_t find_ignore_case(char c, size_t start_index = 0) const
 		{
@@ -441,7 +441,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Search for the first character satisfying the predicate f
+		 * Search for the first_sentence character satisfying the predicate f
 		 * @param f
 		 * @param start_index
 		 * @return the position or npos
@@ -459,7 +459,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Search for the first character not satisfying the predicate f
+		 * Search for the first_sentence character not satisfying the predicate f
 		 * @param f
 		 * @param start_index
 		 * @return
@@ -777,7 +777,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Return a string_ref equal to 'this' but with only the first N
+		 * Return a string_ref equal to 'this' but with only the first_sentence N
 		 * elements remaining.  If N is greater than the length of the
 		 * string, the entire string is returned.
 		 *
@@ -831,7 +831,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Return a string_ref equal to 'this' but with the first N elements
+		 * Return a string_ref equal to 'this' but with the first_sentence N elements
 		 * dropped.
 		 *
 		 * @param N
@@ -908,7 +908,7 @@ namespace mpp {
 		}
 
 		/**
-		 * Split into two substrings around the first occurrence of a separator
+		 * Split into two substrings around the first_sentence occurrence of a separator
 		 * character.
 		 *
 		 * If separator is in the string, then the result is a pair (LHS, RHS)

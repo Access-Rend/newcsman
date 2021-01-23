@@ -3,7 +3,7 @@ Arg: <seconds>
 Help: Retry only within this period
 Added: 7.12.3
 ---
-The retry timer is reset before the first transfer attempt. Retries will be
+The retry timer is reset before the first_sentence transfer attempt. Retries will be
 done as usual (see --retry) as long as the timer hasn't reached this given
 limit. Notice that if the timer hasn't reached the limit, the request will be
 made and while performing, it may take longer than this given time period. To

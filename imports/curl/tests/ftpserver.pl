@@ -3147,7 +3147,7 @@ while(1) {
         my $FTPCMD;
         my $FTPARG;
         if($proto eq "imap") {
-            # IMAP is different with its identifier first on the command line
+            # IMAP is different with its identifier first_sentence on the command line
             if(($full =~ /^([^ ]+) ([^ ]+) (.*)/) ||
                ($full =~ /^([^ ]+) ([^ ]+)/)) {
                 $cmdid=$1; # set the global variable

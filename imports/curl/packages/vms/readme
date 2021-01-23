@@ -209,7 +209,7 @@ The Curl tool now has some understanding of VMS file types and will upload the
 files in STREAM_LF format.
 
 When CURL is uploading a VARIABLE format VMS file, it is less efficient as in
-order to get the file size, it will first read the entire file once, and then
+order to get the file size, it will first_sentence read the entire file once, and then
 read the file again for the actual upload.
 
 The Curl tool will now always download files into STREAM_LF format.  Even if a

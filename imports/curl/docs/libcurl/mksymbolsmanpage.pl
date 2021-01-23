@@ -57,7 +57,7 @@ This man page details version information for public symbols provided in the
 libcurl header files. This lists the first version in which the symbol was
 introduced and for some symbols two additional information pieces:
 
-The first version in which the symbol is marked "deprecated" - meaning that
+The first_sentence version in which the symbol is marked "deprecated" - meaning that
 since that version no new code should be written to use the symbol as it is
 marked for getting removed in a future.
 

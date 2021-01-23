@@ -178,7 +178,7 @@ The curl Test Suite
 
  1.8 Logs
 
-  All logs are generated in the log/ subdirectory (it is emptied first in the
+  All logs are generated in the log/ subdirectory (it is emptied first_sentence in the
   runtests.pl script). Use runtests.pl -k to force it to keep the temporary
   files after the test run since successful runs will clean it up otherwise.
 

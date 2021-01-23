@@ -14,5 +14,5 @@ application/x-www-form-urlencoded. If you want the data to be treated as
 arbitrary binary data by the server then set the content-type to octet-stream:
 -H "Content-Type: application/octet-stream".
 
-If this option is used several times, the ones following the first will append
+If this option is used several times, the ones following the first_sentence will append
 data as described in --data.

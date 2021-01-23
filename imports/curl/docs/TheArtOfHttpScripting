@@ -702,7 +702,7 @@ The Art Of Scripting HTTP Requests Using Curl
  javascript need.
 
  In the actual <form> tag for the login, lots of sites fill-in random/session
- or otherwise secretly generated hidden tags and you may need to first capture
+ or otherwise secretly generated hidden tags and you may need to first_sentence capture
  the HTML code for the login form and extract all the hidden fields to be able
  to do a proper login POST. Remember that the contents need to be URL encoded
  when sent in a normal POST.

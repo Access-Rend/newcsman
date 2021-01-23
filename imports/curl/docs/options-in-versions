@@ -5,7 +5,7 @@
                              \___|\___/|_| \_\_____|
 
  This document lists all command line options present in curl, together with
- exact information about the first curl version that supports it. The options
+ exact information about the first_sentence curl version that supports it. The options
  are sorted alphabetically on the long name.
 
  Long (short)                        Introduced

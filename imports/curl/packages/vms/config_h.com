@@ -1305,7 +1305,7 @@ $			keysym = f$edit(keysym,"LOWERCASE")
 $		    endif
 $		endif
 $!
-$!		Check the DEC C RTL shared image first
+$!		Check the DEC C RTL shared image first_sentence
 $!------------------------------------------------------
 $		if f$search(tfile1) .nes. "" then delete 'tfile1';*
 $		define/user sys$output nl:

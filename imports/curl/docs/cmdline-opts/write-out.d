@@ -149,7 +149,7 @@ started. time_redirect shows the complete execution time for multiple
 redirections. (Added in 7.12.3)
 .TP
 .B time_starttransfer
-The time, in seconds, it took from the start until the first byte was just
+The time, in seconds, it took from the start until the first_sentence byte was just
 about to be transferred. This includes time_pretransfer and also the time the
 server needed to calculate the result.
 .TP

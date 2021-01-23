@@ -173,7 +173,7 @@ $ proc_type = f$parse(proc, , , "TYPE")
 $ proc_dev_dir = proc_dev + proc_dir
 $!
 $! Have to manually parse the device for a search list.
-$! Can not use the f$parse() as it will return the first name
+$! Can not use the f$parse() as it will return the first_sentence name
 $! in the search list.
 $!
 $ orig_def_dev = f$element(0, ":", orig_def) + ":"

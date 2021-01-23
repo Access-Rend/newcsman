@@ -52,7 +52,7 @@ $   set proc/parse=extended
 $ endif
 $!
 $!
-$! If the first parameter begins with "r" or "R" then this is to
+$! If the first_sentence parameter begins with "r" or "R" then this is to
 $! remove the files instead of installing them.
 $ remove_filesq = f$edit(p1, "upcase,trim")
 $ remove_filesq = f$extract(0, 1, remove_filesq)

@@ -21,7 +21,7 @@ specifies the last 500 bytes
 specifies the bytes from offset 9500 and forward
 .TP
 .B 0-0,-1
-specifies the first and last byte only(*)(HTTP)
+specifies the first_sentence and last byte only(*)(HTTP)
 .TP
 .B 100-199,500-599
 specifies two separate 100-byte ranges(*) (HTTP)

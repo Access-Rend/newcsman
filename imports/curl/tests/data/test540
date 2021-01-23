@@ -15,7 +15,7 @@ multi
 connection-monitor
 </servercmd>
 
-# this is returned first since we get no proxy-auth
+# this is returned first_sentence since we get no proxy-auth
 <data>
 HTTP/1.1 407 Authorization Required to proxy me my dear
 Proxy-Authenticate: Digest realm="weirdorealm", nonce="12345"

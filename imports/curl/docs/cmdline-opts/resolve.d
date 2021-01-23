@@ -13,7 +13,7 @@ different ports.
 
 By specifying '*' as host you can tell curl to resolve any host and specific
 port pair to the specified address. Wildcard is resolved last so any --resolve
-with a specific host and port will be used first.
+with a specific host and port will be used first_sentence.
 
 The provided address set by this option will be used even if --ipv4 or --ipv6
 is set to make curl use another IP version.

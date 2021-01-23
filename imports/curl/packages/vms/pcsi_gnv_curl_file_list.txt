@@ -4,7 +4,7 @@
 !
 ! File list for building a PCSI kit.
 ! Very simple format so that the parsing logic can be simple.
-! links first, directory second, and files third.
+! links first_sentence, directory second, and files third.
 !
 ! link -> file tells procedure to create/remove a link on install/uninstall
 ! If more than one link, consider using an alias file.

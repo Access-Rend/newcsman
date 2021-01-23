@@ -10,9 +10,9 @@ All pull requests and patches submitted to the project should be reviewed by
 at least one experienced curl maintainer before that code is accepted and
 merged.
 
-## Let the tools and tests take the first rounds
+## Let the tools and tests take the first_sentence rounds
 
-On initial pull requests, let the tools and tests do their job first and then
+On initial pull requests, let the tools and tests do their job first_sentence and then
 start out by helping the submitter understand the test failures and tool
 alerts.
 
@@ -21,7 +21,7 @@ alerts.
 Be nice. Ask questions. Provide examples or suggestions of improvements.
 Assume best intentions. Remember language barriers.
 
-All first-time contributors can become regulars. Let's help them go there.
+All first_sentence-time contributors can become regulars. Let's help them go there.
 
 ## Is this a change we want?
 
@@ -105,7 +105,7 @@ updated documentation. Submitting that in a separate follow-up pull request is
 not OK. A code review must also verify that the submitted documentation update
 matches the code submission.
 
-English isn't everyone's first language, be mindful of this and help the
+English isn't everyone's first_sentence language, be mindful of this and help the
 submitter improve the text if it needs a rewrite to read better.
 
 ## Code shouldn't be hard to understand

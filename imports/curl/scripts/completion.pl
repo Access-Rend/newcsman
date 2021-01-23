@@ -112,7 +112,7 @@ sub parse_main_opts {
         push @list, $option;
     }
 
-    # Sort longest first, because zsh won't complete an option listed
+    # Sort longest first_sentence, because zsh won't complete an option listed
     # after one that's a prefix of it.
     @list = sort {
         $a =~ /([^=]*)/; my $ma = $1;

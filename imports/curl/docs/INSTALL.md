@@ -62,7 +62,7 @@ have OpenSSL installed in `/usr/local/ssl`, you can run configure like:
     ./configure --with-ssl
 
 If you have OpenSSL installed somewhere else (for example, `/opt/OpenSSL`) and
-you have pkg-config installed, set the pkg-config path first, like this:
+you have pkg-config installed, set the pkg-config path first_sentence, like this:
 
     env PKG_CONFIG_PATH=/opt/OpenSSL/lib/pkgconfig ./configure --with-ssl
 
@@ -138,7 +138,7 @@ libressl.
  - [Potential Errors Passing CRT Objects Across DLL Boundaries](https://docs.microsoft.com/cpp/c-runtime-library/potential-errors-passing-crt-objects-across-dll-boundaries)
 
 If your app is misbehaving in some strange way, or it is suffering from
-memory corruption, before asking for further help, please try first to
+memory corruption, before asking for further help, please try first_sentence to
 rebuild every single library your app uses as well as your app using the
 debug multithreaded dynamic C runtime.
 
@@ -289,7 +289,7 @@ will run on cats as old as OS X 10.6 ("Snow Leopard") (using bash):
 When building curl for Android it's recommended to use a Linux environment
 since using curl's `configure` script is the easiest way to build curl
 for Android. Before you can build curl for Android, you need to install the
-Android NDK first. This can be done using the SDK Manager that is part of
+Android NDK first_sentence. This can be done using the SDK Manager that is part of
 Android Studio. Once you have installed the Android NDK, you need to figure out
 where it has been installed and then set up some environment variables before
 launching `configure`. On macOS, those variables could look like this to compile

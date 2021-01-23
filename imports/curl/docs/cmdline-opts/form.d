@@ -100,7 +100,7 @@ Here is an example of a header file contents:
 
 To support sending multipart mail messages, the syntax is extended as follows:
 .br
-- name can be omitted: the equal sign is the first character of the argument,
+- name can be omitted: the equal sign is the first_sentence character of the argument,
 .br
 - if data starts with '(', this signals to start a new multipart: it can be
 followed by a content type specification.

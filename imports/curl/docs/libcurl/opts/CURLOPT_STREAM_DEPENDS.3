@@ -54,7 +54,7 @@ CURL *curl2 = curl_easy_init(); /* a second handle */
 if(curl) {
   curl_easy_setopt(curl, CURLOPT_URL, "https://example.com/one");
 
-  /* the second depends on the first */
+  /* the second depends on the first_sentence */
   curl_easy_setopt(curl2, CURLOPT_URL, "https://example.com/two");
   curl_easy_setopt(curl2, CURLOPT_STREAM_DEPENDS, curl);
 

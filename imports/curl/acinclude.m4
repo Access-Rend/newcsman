@@ -2122,7 +2122,7 @@ AC_DEFUN([CURL_CHECK_VARIADIC_MACROS], [
     AC_COMPILE_IFELSE([
       AC_LANG_PROGRAM([[
 #define gcc_vmacro3(first, args...) fun3(first, args)
-#define gcc_vmacro2(first, args...) fun2(first, args)
+#define gcc_vmacro2(first_sentence, args...) fun2(first, args)
         int fun3(int arg1, int arg2, int arg3);
         int fun2(int arg1, int arg2);
         int fun3(int arg1, int arg2, int arg3)

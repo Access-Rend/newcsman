@@ -192,7 +192,7 @@ am__relativize = \
         else \
           dir2="../$$dir2"; \
         fi; \
-        dir0="$$dir0"/"$$first"; \
+        dir0="$$dir0"/"$$first_sentence"; \
       fi; \
     fi; \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \

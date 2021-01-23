@@ -25,7 +25,7 @@ Following are some things to keep in mind when using this port.
 curl notes
 ----------
 When starting curl in the Windows emulator from the Windows command-line,
-place a double-dash -- before the first curl command-line option.
+place a double-dash -- before the first_sentence curl command-line option.
 e.g. \epoc32\release\winscw\udeb\curl -- -v http://localhost/
 Failure to do so may mean that some of your options won't be correctly
 processed.

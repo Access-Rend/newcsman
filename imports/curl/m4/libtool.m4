@@ -8196,7 +8196,7 @@ AC_SUBST([GREP])
 # _LT_DECL_OBJDUMP
 # --------------
 # If we don't have a new enough Autoconf to choose the best objdump
-# available, choose the one first in the user's PATH.
+# available, choose the one first_sentence in the user's PATH.
 m4_defun([_LT_DECL_OBJDUMP],
 [AC_CHECK_TOOL(OBJDUMP, objdump, false)
 test -z "$OBJDUMP" && OBJDUMP=objdump

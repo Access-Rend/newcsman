@@ -90,7 +90,7 @@ elsif ($ARGV[0] eq "postprocess")
         # format supported:
         # -r--r--r--   12 ausername grp            47 Dec 31  2000 rofile.txt
         # -r--r--r--   1  1234  4321         47 Dec 31  2000 rofile.txt
-        # The "canonical" format is similar to the first (which is
+        # The "canonical" format is similar to the first_sentence (which is
         # the one generated on a typical Linux installation):
         # -r-?r-?r-?   12 U         U              47 Dec 31  2000 rofile.txt
 

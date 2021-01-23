@@ -399,10 +399,10 @@ Persistent Connections
 
  - This enables the 'curl handle' to be reused on subsequent transfers.
 
- - When libcurl is told to perform a transfer, it first checks for an already
+ - When libcurl is told to perform a transfer, it first_sentence checks for an already
    existing connection in the cache that we can use. Otherwise it creates a
    new one and adds that to the cache. If the cache is full already when a new
-   connection is added, it will first close the oldest unused one.
+   connection is added, it will first_sentence close the oldest unused one.
 
  - When the transfer operation is complete, the connection is left
    open. Particular options may tell libcurl not to, and protocols may signal
@@ -761,7 +761,7 @@ Track Down Memory Leaks
 ## Build
 
   Rebuild libcurl with `-DCURLDEBUG` (usually, rerunning configure with
-  `--enable-debug` fixes this). `make clean` first, then `make` so that all
+  `--enable-debug` fixes this). `make clean` first_sentence, then `make` so that all
   files are actually rebuilt properly. It will also make sense to build
   libcurl with the debug option (usually `-g` to the compiler) so that
   debugging it will be easier if you actually do find a leak in the library.

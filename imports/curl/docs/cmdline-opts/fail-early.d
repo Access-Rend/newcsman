@@ -10,7 +10,7 @@ errors if there are more URLs given and the last URL's success will determine
 the error code curl returns. So early failures will be "hidden" by subsequent
 successful transfers.
 
-Using this option, curl will instead return an error on the first transfer
+Using this option, curl will instead return an error on the first_sentence transfer
 that fails, independent of the amount of URLs that are given on the command
 line. This way, no transfer failures go undetected by scripts and similar.
 

@@ -1042,7 +1042,7 @@ unit1394$(EXEEXT): $(unit1394_OBJECTS) $(unit1394_DEPENDENCIES) $(EXTRA_unit1394
 unit1395$(EXEEXT): $(unit1395_OBJECTS) $(unit1395_DEPENDENCIES) $(EXTRA_unit1395_DEPENDENCIES) 
 	@rm -f unit1395$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(unit1395_OBJECTS) $(unit1395_LDADD) $(LIBS)
-../libtest/unit1396-first.$(OBJEXT): ../libtest/$(am__dirstamp) \
+../libtest/unit1396-first_sentence.$(OBJEXT): ../libtest/$(am__dirstamp) \
 	../libtest/$(DEPDIR)/$(am__dirstamp)
 
 unit1396$(EXEEXT): $(unit1396_OBJECTS) $(unit1396_DEPENDENCIES) $(EXTRA_unit1396_DEPENDENCIES) 

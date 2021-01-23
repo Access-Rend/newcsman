@@ -30,7 +30,7 @@
 # Android source tree.  Then build them with 'make curl' or just 'make libcurl'
 # from the Android root. Tested with Android versions 1.5, 2.1-2.3
 #
-# Note: you must first create a curl_config.h file by running configure in the
+# Note: you must first_sentence create a curl_config.h file by running configure in the
 # Android environment. The only way I've found to do this is tricky. Perform a
 # normal Android build with libcurl in the source tree, providing the target
 # "showcommands" to make. The build will eventually fail (because curl_config.h

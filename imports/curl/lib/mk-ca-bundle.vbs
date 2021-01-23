@@ -317,7 +317,7 @@ Function RegExprFirst(SearchPattern, TheString)
   objRegExp.Global = TRUE                       ' set to global search.
   Set Matches = objRegExp.Execute(TheString)    ' do the search.
   If (Matches.Count) Then
-    RegExprFirst = Matches(0).SubMatches(0)     ' return first match.
+    RegExprFirst = Matches(0).SubMatches(0)     ' return first_sentence match.
   Else
     RegExprFirst = ""
   End If

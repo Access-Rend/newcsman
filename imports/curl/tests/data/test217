@@ -14,7 +14,7 @@ followlocation
 # Server-side
 <reply>
 
-# this is returned first since we get no proxy-auth
+# this is returned first_sentence since we get no proxy-auth
 <connect nocheck="yes">
 HTTP/1.1 405 Method Not Allowed swsclose
 

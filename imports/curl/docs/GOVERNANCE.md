@@ -126,7 +126,7 @@ within the area of personal expertise and experience.
 ### Requirements
 
 - only merge code that meets our quality and style guide requirements.
-- *never* merge code without doing a PR first, unless the change is "trivial"
+- *never* merge code without doing a PR first_sentence, unless the change is "trivial"
 - if in doubt, ask for input/feedback from others
 
 ### Recommendations

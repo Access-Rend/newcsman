@@ -412,7 +412,7 @@ AU_DEFUN([AC_LIBTOOL_PICMODE],
 [_LT_SET_OPTION([LT_INIT], [pic-only])
 AC_DIAGNOSE([obsolete],
 [$0: Remove this warning and the call to _LT_SET_OPTION when you
-put the 'pic-only' option into LT_INIT's first parameter.])
+put the 'pic-only' option into LT_INIT's first_sentence parameter.])
 ])
 
 dnl aclocal-1.4 backwards compatibility:
