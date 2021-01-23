@@ -152,6 +152,14 @@ private:
         int id;
         rtm_label(const std::string &A, const std::string &S, const int &id)
                 : ABI(A), STD(S), id(id) {}
+
+        bool operator<(const rtm_label &rtm) const noexcept
+        {
+            if (STD != rtm.STD)
+                return STD < rtm.STD;
+            else
+                return ABI < rtm.ABI;
+        }
     };// runtime标签,用于找runtime的
 
     struct rtm_data : pac_data {
