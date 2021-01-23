@@ -4,11 +4,11 @@
 ## 1st, 事先约定:
 <br></br>
 
-* 我们认为, runtime是一种特殊的包, 大多数情况以包的方法处理
-* csman客户端不打算采用任何json解析器
-* 包管理功能的描述: 用户通过csman客户端下载许多包到pac_repo, 但只有适合当前runtime的包才会被csman放入CS_IMPORT_PATH中供CovScript使用. 换言之: **pac_repo是CS_IMPORT_PATH的常备仓库, 以备不时之需** 
+* 我们认为, cs.runtime是一种特殊的包, 大多数情况以包的方法处理
+* csman客户端不打算采用任何json解析库用于开发
+* 包管理功能的描述: 用户通过csman客户端下载若干包到本地的pac_repo路径下, 但只有适合当前runtime的包才会被csman从pac_repo中挑选出放入CS_IMPORT_PATH中供CovScript使用. 换言之: **pac_repo是CS_IMPORT_PATH的多版本常备包仓库, 以备不时之需** 
 
-* `.json`文件 : &emsp; 服务器上所有索引文件格式为**json**, 分别有:
+* `.json`文件 : &emsp; 服务器上所有索引文件格式为`json`, 分别有:
     > ~~http://csman.info/ **csman.json** (总索引, 为了指引用户下载需要的文件)~~  
     http://csman.info/sources/ **Generic.json** (必需)  
     http://csman.info/sources/ **Linux_GCC_AMD64.json** (linux需要)  
@@ -31,10 +31,10 @@
   + **pac_repo.hpp**:&emsp; 本地包索引与管理模块
 
 + 客户端结构
-  + csman客户端(默认位于csman家目录:~/.csman/)
+  + csman客户端(位于csman家目录:~/.csman/)
   + csman配置文件(**强制**位于~/.csman_config)
   + csman位于包仓库中的已下载包(默认位于COVSCRIPT_HOME/pac_repo/)
-  + sources_idx文件(位于csman家目录下)
+  + sources_idx文件(位于csman家目录:~/.csman/)
 ***
 ## 3rd, 操作(过程)抽象描述
 <br></br>
@@ -52,12 +52,8 @@
 
 
 + **global.hpp**
-    + `识别字符串`: 将字符串遵循格式识别为:
-        + ABI号
-        + STD号
-        + 版本号
-        + 包名
-    + `contex`: 可存储, 交换的**csman客户端全局信息**, 如:
+    + `识别字符串`: 将字符串遵循格式识别为: ABI号类, STD号类, 版本号类, 包名类
+    + `contex类`: 可存储, 交换的**csman客户端全局信息**, 包括:
         + 当前runtime的信息
             + ABI, STD, 版本号
         + CovScript**环境变量**

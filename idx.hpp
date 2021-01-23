@@ -18,20 +18,141 @@
 class idx_file {
 private:
     context *cxt;
-public:
+
+    void split(std::vector<std::string> &args, const std::string &s) {
+        std::string buf;
+        args.clear();
+        for (auto c : s) {
+            if (std::isspace(c)) {
+                if (!buf.empty()) {
+                    args.push_back(buf);
+                    buf.clear();
+                }
+            } else
+                buf += c;
+        }
+        if (!buf.empty())
+            args.push_back(buf);
+    }
+
+    bool readline(std::ifstream &ifs, std::vector<std::string> &args) {
+        std::string s;
+        if (!std::getline(ifs, s))
+            return false;
+        split(args, s);
+        return true;
+    }
+
+    bool readruntime(std::ifstream &ifs, std::vector<std::string> &args) {
+        if (!readline(ifs, args))
+            return false;
+        std::string name = args[0];
+        int cnt = std::stoi(args[1]);
+        rtm_list.reserve(cnt);
+        pac_info[name].push_back(name);
+        std::string author, description;
+        if (!getline(ifs, author))
+            return false;
+        pac_info[name].push_back(author);
+        if (!getline(ifs, description))
+            return false;
+        pac_info[name].push_back(description);
+        if (!readline(ifs, args))
+            return false;
+        for (int i = 0, j = 0; i < cnt; ++i, ++j) {
+
+            if (j == 0)
+                un_stable_ver[name].first = args[j];
+            if (j == 1)
+                un_stable_ver[name].second = args[j];
+
+            if (args[j] != "0") {
+                node_id[name][args[j]] = ++G.size;
+                G.node_data[G.size] = new rtm_data(name, args[j], args[j + 1], args[j + 2], args[j + 3]);
+                rtm_list.push_back(rtm_label(args[j + 1], args[j + 2], G.size));
+                j += 3;
+            } else
+                ++G.size;
+        }
+
+        return true;
+    } // 图论读点
+
+    bool readpackage(std::ifstream &ifs, std::vector<std::string> &args) {
+        if (!readline(ifs, args))
+            return false;
+        std::string name = args[0];
+        int cnt = std::stoi(args[1]);
+        std::string author, description;
+        if (!getline(ifs, author))
+            return false;
+        pac_info[name].push_back(author);
+        if (!getline(ifs, description))
+            return false;
+        pac_info[name].push_back(description);
+
+        if (!readline(ifs, args))
+            return false;
+        for (int i = 0, j = 0; i < cnt; i++) {
+            if (j == 0)
+                un_stable_ver[name].first = args[j];
+            if (j == 1)
+                un_stable_ver[name].second = args[j];
+
+            if (args[j] != "0") {
+                node_id[name][args[j]] = ++G.size;
+                G.node_data[G.size] = new pac_data(name, args[j], args[j + 1]);
+                ++j;
+            } else
+                ++G.size;
+            ++j;
+        }
+        return true;
+    } // 图论读点
+
+    bool readdep(std::ifstream &ifs, std::vector<std::string> &args) { // 图论读边
+
+        if (!readline(ifs, args))
+            return false;
+        std::string label = args[0];
+        int cnt = std::stoi(args[1]);
+        int rtm_id = -1;
+        if (label != "Generic")
+            rtm_id = rtm_list[query_rtm(label)].id;
+        for (int i = 1; i <= cnt; i++) {
+            readline(ifs, args);
+            if (label != "Generic")
+                G.add_edge(std::stoi(args[0]), rtm_id);
+            for (int j = 1; j < args.size(); j++)
+                G.add_edge(std::stoi(args[0]), std::stoi(args[j]));
+        }
+
+        return true;
+    }
+
     std::string time;
 
     struct pac_data {
-        std::string ver, url, name, idx;
+        std::string ver, url, name;
+        int hash_value;
 
         pac_data(const std::string &n, const std::string &v, const std::string &u) : name(n), ver(v), url(u) {
-            idx = name + ver;
+            hash_value = 0;
+            for(char c: name+ver)
+                hash_value = (((hash_value*101)%19260817)+(int)c)%19260817;
         }
 
         bool operator<(const pac_data &rhs) const {
-            return idx < rhs.idx;
+            return hash_value < rhs.hash_value;
         }
     }; // 依赖图部分，点的数据类
+
+    struct rtm_label {
+        std::string STD, ABI;
+        int id;
+        rtm_label(const std::string &A, const std::string &S, const int &id)
+                : ABI(A), STD(S), id(id) {}
+    };// runtime标签,用于找runtime的
 
     struct rtm_data : pac_data {
         std::string ABI, STD;
@@ -43,63 +164,56 @@ public:
                  const std::string &u) : pac_data(n, v, u),
                                          ABI(A), STD(S) {}
     }; // 依赖图部分，点数据的类
-
+    /*使用:pac_info[name]*/
+public:
     std::unordered_map<std::string, std::vector<std::string> > pac_info; // 包的描述信息 : name, author, description
-
-    struct rtm_label {
-        rtm_label(const std::string &A, const std::string &S, const int &id)
-                : ABI(A), STD(S), id(id) {}
-
-        std::string STD, ABI;
-        int id;
-    };
-
+    /*使用:rtm_list.lower_bound(a_runtime)*/
     std::vector<rtm_label> rtm_list; // 用于寻找符合要求的runtime，默认idx文件给出的是单调的
-
-    int query_rtm(const std::string &AoS){ // 找合适的ABI，STD版本号的runtime，返回runtime在图中的id
-        int l=0,r=rtm_list.size()-1,mid = (rtm_list.size()-1)>>1;
-        if(AoS[0]=='A'){
-            while(l!=r){
-                mid = (l+r)>>1;
-                if(rtm_list[mid].ABI <= AoS)
+    /*lower_bound的临时替代*/
+    int query_rtm(const std::string &AoS) { // 找合适的ABI，STD版本号的runtime，返回runtime在图中的id，以后用lower_bound代替
+        int l = 0, r = rtm_list.size() - 1, mid = (rtm_list.size() - 1) >> 1;
+        if (AoS[0] == 'A') {
+            while (l != r) {
+                mid = (l + r) >> 1;
+                if (rtm_list[mid].ABI <= AoS)
                     r = mid;
                 else
-                    l = mid+1;
+                    l = mid + 1;
             }
-        }
-        else if(AoS[0]=='S'){
-            while(l!=r){
-                mid = (l+r)>>1;
-                if(rtm_list[mid].STD <= AoS)
+        } else if (AoS[0] == 'S') {
+            while (l != r) {
+                mid = (l + r) >> 1;
+                if (rtm_list[mid].STD <= AoS)
                     r = mid;
                 else
-                    l = mid+1;
+                    l = mid + 1;
             }
         }
         return mid;
     }
-
-    std::unordered_map<std::string,std::unordered_map<std::string,int> > node_id;
-
-    std::unordered_map<std::string,std::pair<std::string,std::string> > un_stable_ver;
+    /*使用:node_id[name][ver]*/
+    std::unordered_map<std::string, std::unordered_map<std::string, int> > node_id;
+    /*使用:un_stable_ver[name], first为unstable, second为stable*/
+    std::unordered_map<std::string, std::pair<std::string, std::string> > un_stable_ver;
 
     class graph {
     public:
         struct edge {
             int out;
             bool inv;
-            edge(int o,bool i):out(o),inv(i){}
+
+            edge(int o, bool i) : out(o), inv(i) {}
         };
 
         std::vector<std::vector<edge> > head;
         std::vector<pac_data *> node_data;
         std::vector<bool> vis;
-        int size=0;
+        int size = 0;
 
         void init(int s) {
-            head.resize(s+5);
-            node_data.resize(s+5);
-            vis.resize(s+5);
+            head.resize(s + 5);
+            node_data.resize(s + 5);
+            vis.resize(s + 5);
         }
 
         void dfs(const int &u, std::set<int> &sc, bool sgn) {
@@ -145,122 +259,10 @@ public:
 
     graph G;
 
-    void split(std::vector<std::string> &args, const std::string &s) {
-        std::string buf;
-        args.clear();
-        for (auto c : s) {
-            if (std::isspace(c)) {
-                if (!buf.empty()) {
-                    args.push_back(buf);
-                    buf.clear();
-                }
-            } else
-                buf += c;
-        }
-        if (!buf.empty())
-            args.push_back(buf);
-    }
-
-    bool readline(std::ifstream &ifs, std::vector<std::string> &args) {
-        std::string s;
-        if (!std::getline(ifs, s))
-            return false;
-        split(args, s);
-        return true;
-    }
-
-    bool readruntime(std::ifstream &ifs, std::vector<std::string> &args) {
-        if (!readline(ifs, args))
-            return false;
-        std::string name = args[0];
-        int cnt = std::stoi(args[1]);
-        rtm_list.reserve(cnt);
-        pac_info[name].push_back(name);
-        std::string author, description;
-        if (!getline(ifs, author))
-            return false;
-        pac_info[name].push_back(author);
-        if (!getline(ifs, description))
-            return false;
-        pac_info[name].push_back(description);
-        if (!readline(ifs, args))
-            return false;
-        for (int i = 0, j = 0; i < cnt; ++i,++j) {
-
-            if(j==0)
-                un_stable_ver[name].first = args[j];
-            if(j==1)
-                un_stable_ver[name].second = args[j];
-
-            if (args[j] != "0") {
-                node_id[name][args[j]] = ++G.size;
-                G.node_data[G.size] = new rtm_data(name, args[j], args[j + 1], args[j + 2], args[j + 3]);
-                rtm_list.push_back(rtm_label (args[j + 1], args[j + 2], G.size));
-                j += 3;
-            } else
-                ++G.size;
-        }
-
-        return true;
-    } // 图论读点
-
-    bool readpackage(std::ifstream &ifs, std::vector<std::string> &args) {
-        if (!readline(ifs, args))
-            return false;
-        std::string name = args[0];
-        int cnt = std::stoi(args[1]);
-        std::string author, description;
-        if (!getline(ifs, author))
-            return false;
-        pac_info[name].push_back(author);
-        if (!getline(ifs, description))
-            return false;
-        pac_info[name].push_back(description);
-
-        if (!readline(ifs, args))
-            return false;
-        for (int i = 0, j = 0; i < cnt; i++) {
-
-            if(j==0)
-                un_stable_ver[name].first = args[j];
-            if(j==1)
-                un_stable_ver[name].second = args[j];
-
-            if (args[j] != "0") {
-                node_id[name][args[j]] = ++G.size;
-                G.node_data[G.size] = new pac_data(name, args[j], args[j + 1]);
-                ++j;
-            } else
-                ++G.size;
-            ++j;
-        }
-        return true;
-    } // 图论读点
-
-    bool readdep(std::ifstream &ifs, std::vector<std::string> &args) { // 图论读边
-
-        if (!readline(ifs, args))
-            return false;
-        std::string label = args[0];
-        int cnt = std::stoi(args[1]);
-        int rtm_id=-1;
-        if(label!="Generic")
-            rtm_id = rtm_list[query_rtm(label)].id;
-        for (int i = 1; i <= cnt; i++) {
-            readline(ifs, args);
-            if(label!="Generic")
-                G.add_edge(std::stoi(args[0]),rtm_id);
-            for (int j = 1; j < args.size(); j++)
-                G.add_edge(std::stoi(args[0]), std::stoi(args[j]));
-        }
-
-        return true;
-    }
-
 //    idx_file(const std::string &path) {
-    idx_file(context *_cxt): cxt(_cxt){
-        std::ifstream ifs(cxt->get_val(context::key::idx_path));
-        if (!ifs)
+    idx_file(context *_cxt) : cxt(_cxt) {
+        std::ifstream ifs(cxt->idx_path);
+        if (!ifs.is_open())
             throw std::runtime_error("open idx_file failed");
         std::string str;
         std::vector<std::string> args;

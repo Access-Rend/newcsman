@@ -12,20 +12,23 @@
 
 class parser {
 private:
-    context *cxt;
-    idx_file idx;
-    std::vector<std::string> args;
-    std::set<std::string> opt;
-    std::string predicate, object;
+    context *cxt;   // 上下文，存取全局变量与信息
+    idx_file idx;   // sources_idx，可下载包信息，负责以来查询，支持查询
+    std::vector<std::string> args;  // 用户命令的参数，例如install xxx
+    std::set<std::string> opt;  // 从args里分离出的可选参数，例如-r
+    std::string predicate, object;  // 谓语，宾语
 
-    inline bool input_yes_or_no(){
-        static char c = '?';
+    inline bool y_or_n(){
+        static char c = '#';
         std::cout << '>';
-        while (c != 'y' && c != 'Y' && c != 'n' && c != 'N')
+        while (c != 'y' && c != 'Y' && c != 'n' && c != 'N'){
+            std::cout<<"please type \'y\' or \'n\'."<<std::endl;
             std::cin >> c;
+        }
         return (c == 'y' || c == 'Y');
     }
 
+    /*从args分离opt的filter*/
     inline void opt_filter() {
         for (auto it = args.begin(); it != args.end(); it++) {
             if (it->size() == 2 && it->operator[](0) == '-')
@@ -83,7 +86,7 @@ public:
         for (auto x: dep_set)
             message.content(x.name + " " + x.ver);
         message.first("do you want to install them all?","[y/n]");
-        if(!input_yes_or_no()){
+        if(!y_or_n()){
             message.first("csman:", "operation interrupted by user.");
             return ;
         }
@@ -115,7 +118,7 @@ public:
         for (auto x: sup_set)
             message.content(x.name + " " + x.ver);
         message.first("do you want to uninstall them all?","[y/n]");
-        if(!input_yes_or_no()){
+        if(!y_or_n()){
             message.first("csman:", "operation interrupted by user.");
             return ;
         }
