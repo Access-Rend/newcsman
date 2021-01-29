@@ -567,7 +567,7 @@ sub normalize_path {
         else {
             $prefix = '';
         }
-        @arr = split(m{\/|\\}, $path);
+        @arr = str_split(m{\/|\\}, $path);
     }
 
     my $p = 0;

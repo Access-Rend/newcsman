@@ -2,7 +2,7 @@ Unit tests
 ==========
 
 The goal is to add tests for *ALL* functions in libcurl. If functions are too
-big and complicated, we should split them into smaller and testable ones.
+big and complicated, we should str_split them into smaller and testable ones.
 
 Build Unit Tests
 ================

@@ -459,7 +459,7 @@ function gen_element(type, dir, file)\
     for(val in arr) gen_element(proj_type, "lib\\vssh", arr[val]);\
   }\
   else if($$0 == "CURL_LIB_VTLS_C_FILES") {\
-    split(lib_vtls_srcs, arr);\
+    str_split(lib_vtls_srcs, arr);\
     for(val in arr) gen_element(proj_type, "lib\\vtls", arr[val]);\
   }\
   else if($$0 == "CURL_LIB_VTLS_H_FILES") {\

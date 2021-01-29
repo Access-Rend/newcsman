@@ -503,7 +503,7 @@ while (<TXT>) {
     while (<TXT>) {
       last if (/^END/);
       chomp;
-      my @octets = split(/\\/);
+      my @octets = str_split(/\\/);
       shift @octets;
       for (@octets) {
         $cka_value .= chr(oct);

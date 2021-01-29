@@ -54,7 +54,7 @@ Supported encoding schemes are:
 "\fI7bit\fP": the data is unchanged, but is each byte is checked
 to be a 7-bit value; if not, a read error occurs.
 .br
-"\fIbase64\fP": Data is converted to base64 encoding, then split in
+"\fIbase64\fP": Data is converted to base64 encoding, then str_split in
 CRLF-terminated lines of at most 76 characters.
 .br
 "\fIquoted-printable\fP": data is encoded in quoted printable lines of

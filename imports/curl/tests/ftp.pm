@@ -238,7 +238,7 @@ sub killpid {
     return if(not defined($pidlist));
 
     # Make 'requested' hold the non-duplicate pids from 'pidlist'.
-    @requested = split(' ', $pidlist);
+    @requested = str_split(' ', $pidlist);
     return if(not @requested);
     if(scalar(@requested) > 2) {
         @requested = sort({$a <=> $b} @requested);

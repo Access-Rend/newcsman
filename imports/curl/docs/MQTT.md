@@ -46,7 +46,7 @@ Remaining limitations:
  - No way to set retain flag for publish
  - No username/password support
  - No TLS (mqtts) support
- - Naive EAGAIN handling won't handle split messages
+ - Naive EAGAIN handling won't handle str_split messages
 
 ## Work
 

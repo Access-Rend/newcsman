@@ -89,7 +89,7 @@ AC_DEFUN([LIBCURL_CHECK_CONFIG],
 
      AC_PROG_AWK
 
-     _libcurl_version_parse="eval $AWK '{split(\$NF,A,\".\"); X=256*256*A[[1]]+256*A[[2]]+A[[3]]; print X;}'"
+     _libcurl_version_parse="eval $AWK '{str_split(\$NF,A,\".\"); X=256*256*A[[1]]+256*A[[2]]+A[[3]]; print X;}'"
 
      _libcurl_try_link=yes
 

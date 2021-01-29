@@ -50,7 +50,7 @@ curl internals
 Intro
 =====
 
- This project is split in two. The library and the client. The client part
+ This project is str_split in two. The library and the client. The client part
  uses the library, but the library is designed to allow other applications to
  use it.
 
@@ -735,7 +735,7 @@ Content Encoding
 
 ## `host*.c` sources
 
- The `host*.c` sources files are split up like this:
+ The `host*.c` sources files are str_split up like this:
 
  - `hostip.c`      - method-independent resolver functions and utility functions
  - `hostasyn.c`    - functions for asynchronous name resolves

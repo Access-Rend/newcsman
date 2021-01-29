@@ -1127,7 +1127,7 @@ that doesn't exist on the server, just like --ftp-create-dirs.
 
 18.24 Use multiple parallel transfers for a single download
 
- To enhance transfer speed, downloading a single URL can be split up into
+ To enhance transfer speed, downloading a single URL can be str_split up into
  multiple separate range downloads that get combined into a single final
  result.
 

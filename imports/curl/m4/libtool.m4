@@ -4036,7 +4036,7 @@ for ac_symprfx in "" "_"; do
 "     {f=\"D\"}; \$ 0~/\(\).*\|/{f=\"T\"};"\
 "     {split(\$ 0,a,/\||\r/); split(a[2],s)};"\
 "     s[1]~/^[@?]/{print f,s[1],s[1]; next};"\
-"     s[1]~prfx {split(s[1],t,\"@\"); print f,t[1],substr(t[1],length(prfx))}"\
+"     s[1]~prfx {str_split(s[1],t,\"@\"); print f,t[1],substr(t[1],length(prfx))}"\
 "     ' prfx=^$ac_symprfx]"
   else
     lt_cv_sys_global_symbol_pipe="sed -n -e 's/^.*[[	 ]]\($symcode$symcode*\)[[	 ]][[	 ]]*$ac_symprfx$sympat$opt_cr$/$symxfrm/p'"

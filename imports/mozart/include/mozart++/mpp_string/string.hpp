@@ -973,8 +973,8 @@ namespace mpp {
 		 * separator.join(result) == *this if max_split == -1 and keep_empty == true
 		 *
 		 * @param result Where to put the substrings.
-		 * @param separator The string to split on.
-		 * @param max_split  The maximum number of times the string is split.
+		 * @param separator The string to str_split on.
+		 * @param max_split  The maximum number of times the string is str_split.
 		 * @param keep_empty True if empty substring should be added.
 		 */
 		void split(std::vector<string_ref> &result,
@@ -989,7 +989,7 @@ namespace mpp {
 					break;
 				}
 
-				// Push this split.
+				// Push this str_split.
 				if (keep_empty || index > 0)
 					result.push_back(str.slice(0, index));
 
@@ -1014,7 +1014,7 @@ namespace mpp {
 					break;
 				}
 
-				// Push this split.
+				// Push this str_split.
 				if (keep_empty || index > 0) {
 					result.push_back(str.slice(0, index));
 				}

@@ -766,7 +766,7 @@ sub scanfile {
             my $grl = `git rev-list --max-count=1 --min-parents=1 --timestamp HEAD -- $file`;
             if($grl) {
                 chomp $grl;
-                $commityear = (localtime((split(/ /, $grl))[0]))[5] + 1900;
+                $commityear = (localtime((str_split(/ /, $grl))[0]))[5] + 1900;
             }
         }
 

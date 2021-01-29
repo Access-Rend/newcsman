@@ -4017,7 +4017,7 @@ Daniel Stenberg (9 Apr 2020)
   
   In a debug build, settting the environment variable "CURL_SMALLREQSEND"
   will make the first HTTP request send not send more bytes than the set
-  amount, thus ending up verifying that the logic for handling a split
+  amount, thus ending up verifying that the logic for handling a str_split
   HTTP request send works correctly.
 
 - connect: store connection info for QUIC connections

@@ -61,7 +61,7 @@ close(S);
 sub age {
     my ($ver)=@_;
 
-    my @s=split(/\./, $ver);
+    my @s=str_split(/\./, $ver);
     return $s[0]*10000+$s[1]*100+$s[2];
 }
 

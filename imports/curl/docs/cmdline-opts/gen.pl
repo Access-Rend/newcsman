@@ -366,7 +366,7 @@ sub showonly {
 sub showprotocols {
     my %prots;
     foreach my $f (keys %optlong) {
-        my @p = split(/ /, $protolong{$f});
+        my @p = str_split(/ /, $protolong{$f});
         for my $p (@p) {
             $prots{$p}++;
         }

@@ -6,7 +6,6 @@
 #include <unordered_map>
 
 #pragma once
-
 // 一般格式：
 //  标题 对象数
 //  对象内容...
@@ -19,7 +18,7 @@ class idx_file {
 private:
     context *cxt;
 
-    void split(std::vector<std::string> &args, const std::string &s) {
+    void str_split(std::vector<std::string> &args, const std::string &s) {
         std::string buf;
         args.clear();
         for (auto c : s) {
@@ -39,7 +38,7 @@ private:
         std::string s;
         if (!std::getline(ifs, s))
             return false;
-        split(args, s);
+        str_split(args, s);
         return true;
     }
 
@@ -132,7 +131,7 @@ private:
 
     std::string time;
 
-public:
+public:/*公开类*/
     struct pac_data {
         std::string ver, url, name;
         int hash_value;
@@ -165,16 +164,17 @@ public:
     struct rtm_data : pac_data {
         std::string ABI, STD;
 
-        rtm_data(const std::string &n,
-                 const std::string &v,
-                 const std::string &A,
-                 const std::string &S,
-                 const std::string &u) : pac_data(n, v, u),
-                                         ABI(A), STD(S) {}
+        rtm_data(const std::string &name,
+                 const std::string &ver,
+                 const std::string &ABI,
+                 const std::string &STD,
+                 const std::string &url) : pac_data(name, ver, url),
+                                           ABI(ABI), STD(STD) {}
     }; // 依赖图部分，点数据的类
-    /*使用:pac_info[name]*/
+
 private:
-    std::unordered_map<std::string, std::vector<std::string> > pac_info; // 包的描述信息 : name, author, description
+    /*使用:pac_info[name]*/
+    std::unordered_map<std::string, std::vector<std::string> > pac_info; // 值, 包的描述信息 : name, author, description
     /*使用:rtm_list.lower_bound(a_runtime)*/
     std::vector<rtm_label> rtm_list; // 用于寻找符合要求的runtime，默认idx文件给出的是单调的
     /*lower_bound的临时替代*/
@@ -267,8 +267,7 @@ private:
 
     graph G;
 
-    // 对外接口
-public:
+public:/*公开接口*/
     std::string get_stable_ver(const std::string &name){
         return this->un_stable_ver[name].second;
     }

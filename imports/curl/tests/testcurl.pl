@@ -538,7 +538,7 @@ sub findinpath {
   my $x = ($^O eq 'MSWin32') ? '.exe' : '';
   my $s = ($^O eq 'MSWin32') ? ';' : ':';
   my $p=$ENV{'PATH'};
-  my @pa = split($s, $p);
+  my @pa = str_split($s, $p);
   for $c (@_) {
     for $e (@pa) {
       if( -x "$e/$c$x") {

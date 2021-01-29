@@ -3509,7 +3509,7 @@ if test "$want_idn" = "yes"; then
 fi
 
 
-dnl Let's hope this split URL remains working:
+dnl Let's hope this str_split URL remains working:
 dnl https://www15.software.ibm.com/doc_link/en_US/a_doc_lib/aixprggd/ \
 dnl genprogc/thread_quick_ref.htm
 

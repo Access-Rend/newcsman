@@ -100,7 +100,7 @@ while(<S>) {
             next;
         }
         $doc{$sym}=$sym;
-        my @a=split(/ +/, $rest);
+        my @a=str_split(/ +/, $rest);
         if($a[2]) {
             # this symbol is documented to have been present the last time
             # in this release

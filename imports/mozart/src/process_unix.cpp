@@ -186,7 +186,7 @@ namespace mpp_impl {
 		char *p = reinterpret_cast<char *>(pathv + pathvsize);
 		memcpy(p, path, pathsize);
 
-		// split PATH by replacing ':' with '\0'
+		// str_split PATH by replacing ':' with '\0'
 		// and empty components with "."
 		for (int i = 0; i < count; i++) {
 			char *sep = p + strcspn(p, ":");

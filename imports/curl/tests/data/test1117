@@ -57,7 +57,7 @@ Accept-Ranges: bytes
 Content-Length: 115
 
 This is a long error message that is large enough that the test server is
-guaranteed to split it into two packets.
+guaranteed to str_split it into two packets.
 HTTP/1.1 206 Partial Content
 Date: Thu, 09 Sep 2010 14:49:01 GMT
 Accept-Ranges: bytes

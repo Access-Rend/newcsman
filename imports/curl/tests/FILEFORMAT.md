@@ -97,7 +97,7 @@ Available substitute variables include:
 # `<testcase>`
 
 Each test is always specified entirely within the testcase tag. Each test case
-is split up in four main sections: `info`, `reply`, `client` and `verify`.
+is str_split up in four main sections: `info`, `reply`, `client` and `verify`.
 
 - **info** provides information about the test case
 

@@ -88,7 +88,7 @@ HTTP GET --digest increasing nonce-count
 # - Remove quotes from qop="auth" used by SSPI
 # The if statement is one line because runtests evaluates one line at a time.
 <strippart>
-if(s/^(Authorization: Digest )([^\r\n]+)(\r?\n)$//) { $_ = $1 . join(', ', map { s/^(cnonce=)"[a-zA-Z0-9+\/=]+"$/$1REMOVED/; s/^(response=)"[a-f0-9]{32}"$/$1REMOVED/; s/^qop="auth"$/qop=auth/; $_ } sort split(/, */, $2)) . $3; }
+if(s/^(Authorization: Digest )([^\r\n]+)(\r?\n)$//) { $_ = $1 . join(', ', map { s/^(cnonce=)"[a-zA-Z0-9+\/=]+"$/$1REMOVED/; s/^(response=)"[a-f0-9]{32}"$/$1REMOVED/; s/^qop="auth"$/qop=auth/; $_ } sort str_split(/, */, $2)) . $3; }
 </strippart>
 <protocol>
 GET /1286 HTTP/1.1

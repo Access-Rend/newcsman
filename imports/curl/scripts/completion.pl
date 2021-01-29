@@ -135,7 +135,7 @@ sub call_curl {
     } elsif ((my $exit_code = $? >> 8) != 0) {
         die "curl returned $exit_code with output:\n$output";
     }
-    return split /\n/, $output;
+    return str_split /\n/, $output;
 }
 
 __END__

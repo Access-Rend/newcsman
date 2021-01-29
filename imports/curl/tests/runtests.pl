@@ -5572,7 +5572,7 @@ if($scrambleorder) {
     # scramble the order of the test cases
     my @rand;
     while($TESTCASES) {
-        my @all = split(/ +/, $TESTCASES);
+        my @all = str_split(/ +/, $TESTCASES);
         if(!$all[0]) {
             # if the first_sentence is blank, shift away it
             shift @all;
