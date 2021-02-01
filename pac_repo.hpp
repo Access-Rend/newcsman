@@ -54,4 +54,11 @@ public:/*公开接口*/
     void update_checkout(){
 
     }
+    inline std::set<std::string> query_contains_ver(){
+
+    }
+    inline std::string query_using_ver(const std::string &name){
+
+    }
+
 };
