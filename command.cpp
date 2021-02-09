@@ -1,19 +1,21 @@
 //
 // Created by Rend on 2020/12/3.
 //
+#include"pac_repo.hpp"
 #include"idx.hpp"
 #include"global.hpp"
 #include"http.hpp"
 #include"zip.hpp"
 #include<iostream>
 #include<string>
-#include<vector>
+#include<vector> 
 #include<set>
 
 class parser {
 private:
     context *cxt;   // 上下文，存取全局变量与信息
     idx_file idx;   // sources_idx，可下载包信息，负责以来查询，支持查询
+    pac_repo repo;  // pac_repo, 对包仓库的操作
     std::vector<std::string> args;  // 用户命令的参数，例如install xxx
     std::set<std::string> opt;  // 从args里分离出的可选参数，例如-r
     std::string predicate, object;  // 谓语，宾语
@@ -51,7 +53,7 @@ private:
     } message;
 
 public:
-    parser(context *cxt, const std::vector<std::string> &a) : cxt(cxt), idx(cxt), args(a) {}
+    parser(context *cxt, const std::vector<std::string> &a) : cxt(cxt), idx(cxt), args(a), /*此处有问题*/repo(cxt) {}
 
     void parse() {
         try {
@@ -84,7 +86,7 @@ public:
             // 获取依赖
             auto dep_set = idx.get_depend_set(object, ver);
             message.first_sentence("csman:", "installing " + object + " " + ver +
-                                             " needs to install these packages all because of dependencies:");
+                                " needs to install these packages all because of dependencies:");
             for (auto x: dep_set)
                 message.content(x.name + " " + x.ver);
             message.first_sentence("do you want to install them all?", "[y/n]");
@@ -100,6 +102,7 @@ public:
                 std::string zip_path = dir_path + "pac.zip";
                 http_get(x.url, zip_path, cxt->max_reconnect_time);
                 cov::zip_extract(zip_path, dir_path);
+                repo.update_install(x.name, x.ver, /*这个参数有疑问*/true);
             }
             message.first_sentence("csman: install", object + " " + ver + " and it's dependencies successfully.");
         }
@@ -110,11 +113,40 @@ public:
 
     void uninstall() {
         std::string ver;
-//        if (args.size() <= 2) ver = idx.get_stable_ver(object); 以下寻找包版本,均应替换为pac_repo的接口,例: pac_repo.get_current_runtime_ver()
-//        else if (args[2] == "stable") ver = idx.get_stable_ver(object);
-//        else if (args[2] == "unstable") ver = idx.get_unstable_ver(object);
-//        else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
-//        else ver = args[2];
+        if (args.size() <= 2) ver = idx.get_stable_ver(object); //以下寻找包版本,均应替换为pac_repo的接口,例: pac_repo.get_current_runtime_ver()
+        else if (args[2] == "stable") ver = idx.get_stable_ver(object);
+        else if (args[2] == "unstable") ver = idx.get_unstable_ver(object);
+        else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
+        else ver = args[2];
+
+        try {
+            auto dep_set = idx.get_depend_set(object, ver);
+            message.first_sentence("csman:", "uninstalling " + object + " " + ver +
+                                " needs to uninstall these packages all because there are no other packages supported by them:");
+            for(auto pac : dep_set){
+                if(idx.get_support_set(pac.name, pac.ver).size() != 0)//是其他包的依赖
+                    dep_set.erase(pac);
+                else
+                    message.content(pac.name + " " + pac.ver);
+            }
+            message.first_sentence("do you want to uninstall them all?", "[y/n]");
+            //是否卸载?
+            if(!y_or_n()){  //否
+                message.first_sentence("csman:", "operation interrupted by user.");
+                return;
+            }
+
+            //是 开始卸载
+            for(auto pac : dep_set){
+                message.content("uninstalling " + pac.name + " " + pac.ver + "...");
+                repo.uninstall_certain_pac(pac.name, pac.ver, cxt);
+                repo.update_uninstall(pac.name, pac.ver);
+            }
+            message.first_sentence("csman: uninstall", object + " " + ver + " and it's dependencies successfully.");
+        }
+        catch(std::exception &e){
+            throw e;
+        }
     }
 
     void config() {
