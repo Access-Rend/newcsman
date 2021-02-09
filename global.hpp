@@ -31,18 +31,21 @@ bool is_pac(const std::string &str) {
 
 class context {
 private:
-    void initialize_var();
+    void initialize_val();
     void get_covscript_env();
     void read_config();
 public:
     std::string COVSCRIPT_HOME, CS_IMPORT_PATH, CS_DEV_PATH;
     std::string csman_path, pac_repo;
-    std::string config_path, idx_path;
+    std::string config_path, sources_idx_path;
     std::string ABI, STD, runtime_ver;
     int max_reconnect_time;
+    void show(const std::string &key);
+    void show_all();
+    void set(const std::string &key,const std::string &val);
     context() {
         try{
-            initialize_var();
+            initialize_val();
             get_covscript_env();
             read_config();
         }catch (std::exception e){
@@ -51,7 +54,7 @@ public:
     }
 };
 
-void context::initialize_var() {
+void context::initialize_val() {
     if (std::getenv("COVSCRIPT_HOME") == nullptr ||
         std::getenv("CS_IMPORT_PATH") == nullptr ||
         std::getenv("CS_DEV_PATH") == nullptr)
@@ -66,7 +69,7 @@ void context::initialize_var() {
 
     csman_path = home_path + "/.csman/";
     pac_repo = COVSCRIPT_HOME + "/pac_repo";
-    idx_path = csman_path + "/sources.idx";
+    sources_idx_path = csman_path + "/sources.idx";
     max_reconnect_time = 5;
 }
 void context::get_covscript_env() {
@@ -121,8 +124,67 @@ void context::read_config() {
         if(var == "default") continue;
         if(key=="csman_path") this->csman_path = var;
         else if(key=="pac_repo")pac_repo = var;
-        else if(key=="idx_path") idx_path = var;
+        else if(key=="sources_idx_path") sources_idx_path = var;
         else if(key=="max_reconnect_time") max_reconnect_time = std::stoi(var);
     }
     return ;
+}
+void context::show_all() {
+    std::cout<<"CovScript COVSCRIPT_HOME = \""<<COVSCRIPT_HOME<<"\""<<std::endl
+            <<"CovScript CS_IMPORT_PATH = \""<<CS_IMPORT_PATH<<"\""<<std::endl
+            <<"CovScript CS_DEV_PATH = \""<<CS_DEV_PATH<<"\""<<std::endl
+            <<"csman_path = \""<<csman_path<<"\""<<std::endl
+            <<"csman pac_repo = \""<<pac_repo<<"\""<<std::endl
+            <<"csman config_path = \""<<config_path<<"\""<<std::endl
+            <<"CovScript sources_idx_path = \""<<sources_idx_path<<"\""<<std::endl
+            <<"max reconnect time = "<<max_reconnect_time<<std::endl;
+}
+void context::show(const std::string &key){
+    if(key=="COVSCRIPT_HOME")
+        std::cout<<"CovScript COVSCRIPT_HOME = \""<<COVSCRIPT_HOME<<"\""<<std::endl;
+    else if(key=="CS_IMPORT_PATH")
+        std::cout<<"CovScript CS_IMPORT_PATH = \""<<CS_IMPORT_PATH<<"\""<<std::endl;
+    else if(key=="CS_DEV_PATH")
+        std::cout<<"CovScript CS_DEV_PATH = \""<<CS_DEV_PATH<<"\""<<std::endl;
+    else if(key=="csman_path")
+        std::cout<<"csman_path = \""<<csman_path<<"\""<<std::endl;
+    else if(key=="pac_repo")
+        std::cout<<"csman pac_repo = \""<<pac_repo<<"\""<<std::endl;
+    else if(key=="config_path")
+        std::cout<<"csman config_path = \""<<config_path<<"\""<<std::endl;
+    else if(key=="sources_idx_path")
+        std::cout<<"CovScript sources_idx_path = \""<<sources_idx_path<<"\""<<std::endl;
+    else if(key=="max_reconnect_time")
+        std::cout<<"max reconnect time = "<<max_reconnect_time<<std::endl;
+    else
+        std::cout<<"no argument named \""<<key<<"\"!"<<std::endl;
+}
+
+void context::set(const std::string &key,const std::string &val){
+    if(key=="COVSCRIPT_HOME"){
+
+    }
+    else if(key=="CS_IMPORT_PATH"){
+
+    }
+    else if(key=="CS_DEV_PATH"){
+
+    }
+    else if(key=="csman_path"){
+
+    }
+    else if(key=="pac_repo"){
+
+    }
+    else if(key=="config_path"){
+
+    }
+    else if(key=="sources_idx_path"){
+
+    }
+    else if(key=="max_reconnect_time"){
+
+    }
+    else
+        std::cout<<"no argument named \""<<key<<"\"!"<<std::endl;
 }

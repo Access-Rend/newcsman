@@ -2,23 +2,60 @@
 // Created by Rend on 2020/12/3.
 //
 #include"pac_repo.hpp"
-#include"idx.hpp"
 #include"global.hpp"
 #include"http.hpp"
+#include"idx.hpp"
 #include"zip.hpp"
 #include<iostream>
 #include<string>
-#include<vector> 
+#include<vector>
 #include<set>
 
 class parser {
 private:
     context *cxt;   // 上下文，存取全局变量与信息
-    idx_file idx;   // sources_idx，可下载包信息，负责以来查询，支持查询
-    pac_repo repo;  // pac_repo, 对包仓库的操作
+    idx_file idx;   // sources_idx，可下载包信息，负责依赖查询，支持查询
+    pac_repo repo;  // pac_repo, 包仓库
     std::vector<std::string> args;  // 用户命令的参数，例如install xxx
     std::set<std::string> opt;  // 从args里分离出的可选参数，例如-r
     std::string predicate, object;  // 谓语，宾语
+
+    void download_unzip_pac(const std::string &name,const std::string &ver,const std::string &url){
+        std::string dir_path = cxt->pac_repo + "/" + name + "/" + ver + "/";
+        std::string zip_path = dir_path + "pac.zip";
+        http_get(url, zip_path, cxt->max_reconnect_time);
+        cov::zip_extract(zip_path, dir_path);
+    }
+
+    void delete_pac(std::string& name, std::string& ver){
+        std::string target(cxt->pac_repo + '/' + name);
+        if(!path_exist(target))    //  target 路径不正确
+            throw std::runtime_error("package: " + name + " " + ver + " is not found in .../pac_repo, unstall failed");
+        try {
+            remove_dir(target);    //删除目标路径下所有文件, 这个函数的返回值是成功删除的个数
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << '\n';  //删除失败可能是包正在被使用
+        }
+        throw std::runtime_error("uninstall pack" + name + " " + ver + " failed, please check whether it's using by other progress");
+        return;
+    }
+
+    const std::string HELP = "usage: csman <command> [objects] [args]\n"
+                             "\n"
+                             "Online commands:\n"
+                             "\tinstall\t\t\tInstall a package.\n"
+                             "\tuninstall\t\tUninstall a package.\n"
+                             "Offline commands:\n"
+                             "\thelp\t\t\tCheck the usage of csman.\n"
+                             "\tlist\t\t\tCheck your all packages' situation of CovScript.\n"
+                             "\tconfig\t\t\tManage your arguments of CovScript.\n"
+                             "\tversion\t\t\tCheck version of csman.\n"
+                             "\tcheckout\t\tChange your CovScript's runtime version.\n"
+                             "\n"
+                             "Go to our page for more support: http://123.com";
+
+    const std::string VERSION = "csman 1.0";
 
     inline bool y_or_n() {
         static char c = '#';
@@ -30,7 +67,7 @@ private:
         return (c == 'y' || c == 'Y');
     }
 
-    /*从args分离opt的filter*/
+    /*从args分离opt的filter, 分离后args将不带有opt参数*/
     inline void opt_filter() {
         for (auto it = args.begin(); it != args.end(); it++) {
             if (it->size() == 2 && it->operator[](0) == '-')
@@ -53,7 +90,7 @@ private:
     } message;
 
 public:
-    parser(context *cxt, const std::vector<std::string> &a) : cxt(cxt), idx(cxt), args(a), /*此处有问题*/repo(cxt) {}
+    parser(context *cxt, const std::vector<std::string> &a) : cxt(cxt), idx(cxt), args(a), repo(cxt) {}
 
     void parse() {
         try {
@@ -64,6 +101,12 @@ public:
                 install();
             else if (predicate == "uninstall")
                 uninstall();
+            else if (predicate == "help")
+                std::cout<<HELP;
+            else if (predicate == "list")
+                list();
+            else if (predicate == "version")
+                std::cout<<VERSION;
             else if (predicate == "config")
                 config();
             else
@@ -98,11 +141,8 @@ public:
             // 是 进入安装
             for (auto x : dep_set) {
                 message.content("installing " + x.name + " " + x.ver + "...");
-                std::string dir_path = cxt->pac_repo + "/" + x.name + "/" + x.ver + "/";
-                std::string zip_path = dir_path + "pac.zip";
-                http_get(x.url, zip_path, cxt->max_reconnect_time);
-                cov::zip_extract(zip_path, dir_path);
-                repo.update_install(x.name, x.ver, /*这个参数有疑问*/true);
+                download_unzip_pac(x.name,x.ver,x.url);
+                repo.update_install(x.name, x.ver, true);
             }
             message.first_sentence("csman: install", object + " " + ver + " and it's dependencies successfully.");
         }
@@ -120,29 +160,28 @@ public:
         else ver = args[2];
 
         try {
-            auto dep_set = idx.get_depend_set(object, ver);
+            auto sup_set = idx.get_support_set(object, ver);
             message.first_sentence("csman:", "uninstalling " + object + " " + ver +
                                 " needs to uninstall these packages all because there are no other packages supported by them:");
-            for(auto pac : dep_set){
-                if(idx.get_support_set(pac.name, pac.ver).size() != 0)//是其他包的依赖
-                    dep_set.erase(pac);
+            for(auto pac : sup_set){
+                if(idx.get_support_set(pac.name, pac.ver).size() != 0)
+                    sup_set.erase(pac);
                 else
                     message.content(pac.name + " " + pac.ver);
             }
             message.first_sentence("do you want to uninstall them all?", "[y/n]");
-            //是否卸载?
+
             if(!y_or_n()){  //否
                 message.first_sentence("csman:", "operation interrupted by user.");
                 return;
             }
 
-            //是 开始卸载
-            for(auto pac : dep_set){
+            for(auto pac : sup_set){
                 message.content("uninstalling " + pac.name + " " + pac.ver + "...");
-                repo.uninstall_certain_pac(pac.name, pac.ver, cxt);
+                delete_pac(pac.name, pac.ver);
                 repo.update_uninstall(pac.name, pac.ver);
             }
-            message.first_sentence("csman: uninstall", object + " " + ver + " and it's dependencies successfully.");
+            message.first_sentence("csman: uninstall", object + " " + ver + " and it's supports successfully.");
         }
         catch(std::exception &e){
             throw e;
@@ -150,6 +189,42 @@ public:
     }
 
     void config() {
+        if(object == "set"){
+            if(args.size()==4){
+                try{
+                    cxt->set(args[3],args[4]);
+                }
+                catch(std::exception &e){
+                    throw e;
+                }
+            }
+            else throw std::invalid_argument("syntax error.");
+        }
+        else if(object == "show"){
+            if(args.size()==2)
+                cxt->show_all();
+            else if(args.size()==3)
+                cxt->show(args[2]);
+            else throw std::invalid_argument("syntax error.");
+        }
+        else
+            throw std::invalid_argument("syntax error.");
+    }
+
+    void list(){
+        std::cout<<"Currently you have installed these packages:"<<std::endl;
+        for(auto x : repo.local_pac){
+            std::cout<<x.first<<":"<<std::endl;
+            for(auto v: x.second.ver){
+                std::cout<<v;
+                if(v==x.second.available)
+                    std::cout<<"(current runtime using: CovScript "<<cxt->runtime_ver<<")";
+                std::cout<<std::endl;
+            }
+        }
+    }
+
+    void checkout(){
 
     }
 };

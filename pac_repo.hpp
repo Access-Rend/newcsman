@@ -1,9 +1,10 @@
+#include<unordered_map>
 #include<iostream>
 #include<fstream>
-#include<unordered_map>
 #include<set>
-#include<filesystem>
+
 #include "global.hpp"
+#include "dir.hpp"
 class pac_repo{
 private:
     context *cxt;
@@ -14,10 +15,7 @@ public:/*公开类*/
         std::string available;
         std::set<std::string>ver;
     };
-
-private:
     std::unordered_map<std::string, pac_data>local_pac;
-
 public:/*公开接口*/
     pac_repo(const context *&cxt){
         std::ifstream ifs(cxt->pac_repo);
@@ -66,21 +64,7 @@ public:/*公开接口*/
     inline std::string query_using_ver(const std::string &name){
         return local_pac.count(name) == 0 ? "" : /*likely*/ local_pac[name].available;
     }
-    // inline std::get_current_runtime_ver(){
-    //     return cxt->runtime_ver;
-    // }
-
-    void uninstall_certain_pac(std::string& name, std::string& ver, context *cxt){
-        std::filesystem::path target(cxt->pac_repo + '/' + name);
-        if(!std::filesystem::exists(target))    //  target 路径不正确
-            throw std::runtime_error("package: " + name + " " + ver + " is not found in .../pac_repo, unstall failed");
-        try {
-            std::filesystem::remove_all(target);    //删除目标路径下所有文件, 这个函数的返回值是成功删除的个数
-        }
-        catch(const std::exception& e) {
-             std::cerr << e.what() << '\n';  //删除失败可能是包正在被使用
-        }
-        throw std::runtime_error("uninstall pack" + name + " " + ver + " failed, please check whether it's using by other progress");
-        return;
+    inline std::string get_current_runtime_ver(){
+     return cxt->runtime_ver;
     }
 };

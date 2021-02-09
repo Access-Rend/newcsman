@@ -153,12 +153,14 @@ optional.hpp
 ../imports/zip/include/optional.hpp
 
 /mnt/d/mywork/newcsman/command.cpp
-idx.hpp
-/mnt/d/mywork/newcsman/idx.hpp
+pac_repo.hpp
+/mnt/d/mywork/newcsman/pac_repo.hpp
 global.hpp
 /mnt/d/mywork/newcsman/global.hpp
 http.hpp
 /mnt/d/mywork/newcsman/http.hpp
+idx.hpp
+/mnt/d/mywork/newcsman/idx.hpp
 zip.hpp
 /mnt/d/mywork/newcsman/zip.hpp
 iostream
@@ -171,9 +173,11 @@ set
 -
 
 /mnt/d/mywork/newcsman/dir.hpp
-string
+cstdio
 -
-stdio.h
+cstring
+-
+iostream
 -
 direct.h
 -
@@ -182,6 +186,8 @@ io.h
 unistd.h
 -
 sys/stat.h
+-
+dirent.h
 -
 
 /mnt/d/mywork/newcsman/global.hpp
@@ -217,4 +223,18 @@ set
 -
 unordered_map
 -
+
+/mnt/d/mywork/newcsman/pac_repo.hpp
+unordered_map
+-
+iostream
+-
+fstream
+-
+set
+-
+global.hpp
+/mnt/d/mywork/newcsman/global.hpp
+dir.hpp
+/mnt/d/mywork/newcsman/dir.hpp
 

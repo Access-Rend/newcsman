@@ -1684,7 +1684,7 @@ function gen_element(type, dir, file)\
     for(val in arr) gen_element(proj_type, "src", arr[val]);\
   }\
   else if($$0 == "CURL_SRC_H_FILES") {\
-    split(src_hdrs, arr);\
+    str_split(src_hdrs, arr);\
     for(val in arr) gen_element(proj_type, "src", arr[val]);\
   }\
   else if($$0 == "CURL_SRC_RC_FILES") {\
@@ -1692,7 +1692,7 @@ function gen_element(type, dir, file)\
     for(val in arr) gen_element(proj_type, "src", arr[val]);\
   }\
   else if($$0 == "CURL_SRC_X_C_FILES") {\
-    str_split(src_x_srcs, arr);\
+    split(src_x_srcs, arr);\
     for(val in arr) {\
       sub(/..\/lib\//, "", arr[val]);\
       gen_element(proj_type, "lib", arr[val]);\
