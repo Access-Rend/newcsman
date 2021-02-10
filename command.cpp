@@ -23,21 +23,21 @@ private:
     void download_unzip_pac(const std::string &name,const std::string &ver,const std::string &url){
         std::string dir_path = cxt->pac_repo + "/" + name + "/" + ver + "/";
         std::string zip_path = dir_path + "pac.zip";
-        http_get(url, zip_path, cxt->max_reconnect_time);
-        cov::zip_extract(zip_path, dir_path);
+        try{
+            http_get(url, zip_path, cxt->max_reconnect_time);
+            cov::zip_extract(zip_path, dir_path);
+        }
+        catch(std::exception &e){
+            throw e;
+        }
     }
 
     void delete_pac(std::string& name, std::string& ver){
         std::string target(cxt->pac_repo + '/' + name);
         if(!path_exist(target))    //  target 路径不正确
-            throw std::runtime_error("package: " + name + " " + ver + " is not found in .../pac_repo, unstall failed");
-        try {
-            remove_dir(target);    //删除目标路径下所有文件, 这个函数的返回值是成功删除的个数
-        }
-        catch(const std::exception& e) {
-            std::cerr << e.what() << '\n';  //删除失败可能是包正在被使用
-        }
-        throw std::runtime_error("uninstall pack" + name + " " + ver + " failed, please check whether it's using by other progress");
+            throw std::runtime_error("package: " + name + " " + ver + " is not found, uninstall failed.");
+        if(!remove_dir(target));    //删除目标路径下所有文件, 这个函数的返回值是成功删除的个数
+            throw std::runtime_error("uninstall pack" + name + " " + ver + " failed, please check whether it's using by other progress.");
         return;
     }
 
@@ -68,11 +68,10 @@ private:
     }
 
     /*从args分离opt的filter, 分离后args将不带有opt参数*/
-    inline void opt_filter() {
+    inline void opt_filter() { // 改
         for (auto it = args.begin(); it != args.end(); it++) {
             if (it->size() == 2 && it->operator[](0) == '-')
-                opt.insert(*it),
-                        args.erase(it);
+                opt.insert(*it), args.erase(it);
         }
     }
 
@@ -122,7 +121,7 @@ public:
         if (args.size() <= 2) ver = idx.get_stable_ver(object);
         else if (args[2] == "stable") ver = idx.get_stable_ver(object);
         else if (args[2] == "unstable") ver = idx.get_unstable_ver(object);
-        else if (!is_ver(args[2]))throw std::invalid_argument("wrong package version.");
+        else if (!is_ver(args[2])) throw std::invalid_argument("wrong package version.");
         else ver = args[2];
 
         try {

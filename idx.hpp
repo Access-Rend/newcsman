@@ -147,6 +147,17 @@ public:/*公开类*/
         }
     }; // 依赖图部分，点的数据类
 
+    struct rtm_data : pac_data {
+        std::string ABI, STD;
+
+        rtm_data(const std::string &name,
+                 const std::string &ver,
+                 const std::string &ABI,
+                 const std::string &STD,
+                 const std::string &url) : pac_data(name, ver, url),
+                                           ABI(ABI), STD(STD) {}
+    }; // 依赖图部分，点数据的类
+
     struct rtm_label {
         std::string STD, ABI, ver;
         int id;
@@ -159,18 +170,7 @@ public:/*公开类*/
             else
                 return ABI < r.ABI;
         }
-    };// runtime标签,用于找runtime的
-
-    struct rtm_data : pac_data {
-        std::string ABI, STD;
-
-        rtm_data(const std::string &name,
-                 const std::string &ver,
-                 const std::string &ABI,
-                 const std::string &STD,
-                 const std::string &url) : pac_data(name, ver, url),
-                                           ABI(ABI), STD(STD) {}
-    }; // 依赖图部分，点数据的类
+    }; // runtime标签,用于找runtime的
 
 private:
     /*使用:pac_info[name]*/
@@ -296,8 +296,8 @@ public:/*公开接口*/
         readline(ifs, args); //PAC 14 28
         int cnt = std::stoi(args[1]);
         G.init(std::stoi(args[2]));
-        readruntime(ifs, args);
-        for (int i = 2; i <= cnt; i++)
+        readruntime(ifs, args); // 改
+        for (int i = 2; i <= cnt; i++) // 改
             readpackage(ifs, args);
         //依赖
         while (readdep(ifs, args));

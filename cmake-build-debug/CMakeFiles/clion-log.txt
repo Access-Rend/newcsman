@@ -1,4 +1,21 @@
-/usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /mnt/d/mywork/newcsman
--- Configuring done
--- Generating done
--- Build files have been written to: /mnt/d/mywork/newcsman/cmake-build-debug
+D:\JetBrians\apps\CLion\ch-0\203.7148.70\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\mywork\newcsman
+-- The C compiler identification is GNU 10.2.0
+-- The CXX compiler identification is GNU 10.2.0
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: C:/MinGW/bin/g++.exe
+-- Check for working CXX compiler: C:/MinGW/bin/g++.exe - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:20 (target_compile_definitons):
+  Unknown CMake command "target_compile_definitons".
+
+
+-- Configuring incomplete, errors occurred!
+See also "D:/mywork/newcsman/cmake-build-debug/CMakeFiles/CMakeOutput.log".

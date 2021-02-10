@@ -1,4 +1,4 @@
-ToolSet: Ubuntu 20.04.1 LTS (local)@C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps\ubuntu2004.exe
+ToolSet: w64 8.0 (local)@C:\MinGW
 Options: 
 
 Options:

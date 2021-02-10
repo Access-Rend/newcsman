@@ -2,7 +2,6 @@
 // Created by Rend on 2020/12/6.
 //
 #pragma once
-
 #include <mozart++/process>
 #include <fstream>
 #include <cstdlib>
@@ -53,7 +52,6 @@ public:
         }
     }
 };
-
 void context::initialize_val() {
     if (std::getenv("COVSCRIPT_HOME") == nullptr ||
         std::getenv("CS_IMPORT_PATH") == nullptr ||
@@ -162,7 +160,6 @@ void context::show(const std::string &key){
 
 void context::set(const std::string &key,const std::string &val){
     if(key=="COVSCRIPT_HOME"){
-
     }
     else if(key=="CS_IMPORT_PATH"){
 
