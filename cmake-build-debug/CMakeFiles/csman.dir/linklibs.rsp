@@ -1,0 +1,1 @@
+ -lcurl imports/mozart/libmozart.a libzip.a -lnghttp2 -lssl -lcrypto -lzstd -lssh2 -lz -lbrotlidec-static -lbrotlicommon-static -lws2_32 -lwldap32 -lccrypt32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

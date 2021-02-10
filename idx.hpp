@@ -1,9 +1,14 @@
+#pragma once
 #include "global.hpp"
+#include "fileio.hpp"
+#include "dir.hpp"
+
+#include <unordered_map>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <set>
-#include <unordered_map>
+
 
 #pragma once
 // 一般格式：
@@ -18,35 +23,8 @@ class idx_file {
 private:
     context *cxt;
 
-    void str_split(std::vector<std::string> &args, const std::string &s) {
-        std::string buf;
-        args.clear();
-        for (auto c : s) {
-            if (std::isspace(c)) {
-                if (!buf.empty()) {
-                    args.push_back(buf);
-                    buf.clear();
-                }
-            } else
-                buf += c;
-        }
-        if (!buf.empty())
-            args.push_back(buf);
-    }
+    bool readruntime(const std::string &name, const int &cnt,std::ifstream &ifs, std::vector<std::string> &args) { // 改
 
-    bool readline(std::ifstream &ifs, std::vector<std::string> &args) {
-        std::string s;
-        if (!std::getline(ifs, s))
-            return false;
-        str_split(args, s);
-        return true;
-    }
-
-    bool readruntime(std::ifstream &ifs, std::vector<std::string> &args) {
-        if (!readline(ifs, args))
-            return false;
-        std::string name = args[0];
-        int cnt = std::stoi(args[1]);
         rtm_list.reserve(cnt);
         pac_info[name].push_back(name);
         std::string author, description;
@@ -77,11 +55,8 @@ private:
         return true;
     } // 图论读点
 
-    bool readpackage(std::ifstream &ifs, std::vector<std::string> &args) {
-        if (!readline(ifs, args))
-            return false;
-        std::string name = args[0];
-        int cnt = std::stoi(args[1]);
+    bool readpackage(const std::string &name, const int &cnt,std::ifstream &ifs, std::vector<std::string> &args) {
+
         std::string author, description;
         if (!getline(ifs, author))
             return false;
@@ -286,7 +261,7 @@ public:/*公开接口*/
     }
 
     idx_file(context *_cxt) : cxt(_cxt) {
-        std::ifstream ifs(cxt->idx_path);
+        std::ifstream ifs(cxt->vars["sources_idx_path"]);
         if (!ifs.is_open())
             throw std::runtime_error("open idx_file failed");
         std::string str;
@@ -294,12 +269,23 @@ public:/*公开接口*/
 
         std::getline(ifs, time); //2020.02.30.10.35
         readline(ifs, args); //PAC 14 28
-        int cnt = std::stoi(args[1]);
-        G.init(std::stoi(args[2]));
-        readruntime(ifs, args); // 改
-        for (int i = 2; i <= cnt; i++) // 改
-            readpackage(ifs, args);
-        //依赖
+        int cnt_1 = std::stoi(args[1]); // cnt_1 包个数（按名称）
+        G.init(std::stoi(args[2])); // cnt_2 包个数（按名称+版本）
+
+        for (int i = 2; i <= cnt_1; i++){ // 0为空位无效包编号，所有包编号为1~cnt_2，共cnt个包 改
+            if (!readline(ifs, args))
+                throw std::runtime_error("incorrect format of sources_idx.");
+
+            std::string name = args[0];
+            int cnt = std::stoi(args[1]); // cnt 当前包内 包个数（按名称+版本）
+
+            if(name == "cs.runtime")
+                readruntime(name,cnt,ifs,args);
+            else
+                readpackage(name,cnt,ifs, args);
+        }
+
+        //读取依赖
         while (readdep(ifs, args));
     }
 };

@@ -12,12 +12,12 @@ add_library(zip STATIC imports/zip/zip.c)
 
 ADD_COMPILE_OPTIONS("-g")
 
-add_executable(csman command.cpp idx.hpp pac_repo.hpp global.hpp http.hpp dir.hpp)
+add_executable(csman command.cpp idx.hpp pac_repo.hpp global.hpp http.hpp dir.hpp fileio.hpp)
 
 target_link_libraries(csman curl mozart zip)
 
 if(WIN32)
-    target_compile_definitons(csman PRIVATE CURL_STATICLIB)
+    target_compile_definitions(csman PRIVATE CURL_STATICLIB)
     target_link_libraries(csman nghttp2 ssl crypto zstd ssh2 z brotlidec-static brotlicommon-static ws2_32 wldap32 ccrypt32)
 endif()
 

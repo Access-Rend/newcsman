@@ -275,7 +275,7 @@ public:
 
 int main() {
     try {
-        sources_idx si("/mnt/d/mywork/newcsman/idx");
+        sources_idx si("/mnt/d/mywork/newcsman/sources_idx");
         for (auto x : si.G.support_data(2))
             std::cerr << x.name << std::endl;
 

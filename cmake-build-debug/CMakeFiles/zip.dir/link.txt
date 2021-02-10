@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libzip.a  CMakeFiles/zip.dir/imports/zip/zip.c.obj
+C:\MinGW\bin\ranlib.exe libzip.a

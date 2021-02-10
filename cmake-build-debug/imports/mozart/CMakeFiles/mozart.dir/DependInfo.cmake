@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/d/mywork/newcsman/imports/mozart/src/core.cpp" "/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/core.cpp.o"
-  "/mnt/d/mywork/newcsman/imports/mozart/src/process.cpp" "/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process.cpp.o"
-  "/mnt/d/mywork/newcsman/imports/mozart/src/process_unix.cpp" "/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process_unix.cpp.o"
-  "/mnt/d/mywork/newcsman/imports/mozart/src/process_win32.cpp" "/mnt/d/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process_win32.cpp.o"
+  "D:/mywork/newcsman/imports/mozart/src/core.cpp" "D:/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/core.cpp.obj"
+  "D:/mywork/newcsman/imports/mozart/src/process.cpp" "D:/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process.cpp.obj"
+  "D:/mywork/newcsman/imports/mozart/src/process_unix.cpp" "D:/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process_unix.cpp.obj"
+  "D:/mywork/newcsman/imports/mozart/src/process_win32.cpp" "D:/mywork/newcsman/cmake-build-debug/imports/mozart/CMakeFiles/mozart.dir/src/process_win32.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

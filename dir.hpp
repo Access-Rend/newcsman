@@ -1,15 +1,17 @@
 /*
  * from https://blog.csdn.net/venom_snake/article/details/88066475
  */
-#include <cstdio>
-#include <cstring>
+#pragma once
 #include <iostream>
+#include <cstring>
+#include <cstdio>
 #ifdef _WIN32
+#include <windows.h>
 #include <direct.h>		//for mkdir rmdir
 #include <io.h>			//for access
 #elif __linux__
-#include <unistd.h>		//for mkdir rmdir
 #include <sys/stat.h>	//for access
+#include <unistd.h>		//for mkdir rmdir
 #include <dirent.h>		//for DIR remove
 #endif
 

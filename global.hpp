@@ -3,10 +3,15 @@
 //
 #pragma once
 #include <mozart++/process>
-#include <fstream>
 #include <cstdlib>
+#include <fstream>
+#include <vector>
 #include <string>
 #include <regex>
+#include <set>
+
+#include "fileio.hpp"
+#include "dir.hpp"
 
 bool is_abi(const std::string &str) {
     static const std::regex reg("^ABI[0-9]{4}[0-9A-F]{2}$");
@@ -33,42 +38,108 @@ private:
     void initialize_val();
     void get_covscript_env();
     void read_config();
+    void wirte_config();
+    std::set<std::string> only_read_vars;
+    struct Config_Data{
+        struct line_data {
+            std::string text;
+            bool is_comment;
+
+            line_data(const std::string &text, bool is_comment) : text(text),
+                                                                 is_comment(is_comment) {}// 该行不是注释，则记录key；反之记录该行注释内容
+        };
+        std::vector<line_data> lines;
+    } config_data;
 public:
-    std::string COVSCRIPT_HOME, CS_IMPORT_PATH, CS_DEV_PATH;
-    std::string csman_path, pac_repo;
-    std::string config_path, sources_idx_path;
     std::string ABI, STD, runtime_ver;
-    int max_reconnect_time;
+    std::unordered_map<std::string, std::string> vars;
+    /*
+     * all variables in "configure vars":
+     * home_path
+     * COVSCRIPT_HOME, CS_IMPORT_PATH, CS_DEV_PATH
+     * config_path, csman_path, _path, sources_idx_path, max_reconnect_time
+     */
+
     void show(const std::string &key);
+
     void show_all();
-    void set(const std::string &key,const std::string &val);
+
+    void set(const std::string &key, const std::string &val);
+
     context() {
-        try{
+        try {
             initialize_val();
             get_covscript_env();
             read_config();
-        }catch (std::exception e){
+        } catch (std::exception e) {
             throw e;
         }
     }
 };
-void context::initialize_val() {
-    if (std::getenv("COVSCRIPT_HOME") == nullptr ||
-        std::getenv("CS_IMPORT_PATH") == nullptr ||
-        std::getenv("CS_DEV_PATH") == nullptr)
-        throw std::runtime_error("CovScript has not installed yet or maybe it has been broken.");
-    /*CovScript env var*/
-    COVSCRIPT_HOME = std::getenv("COVSCRIPT_HOME");
-    CS_IMPORT_PATH = std::getenv("CS_IMPORT_PATH");
-    CS_DEV_PATH = std::getenv("CS_DEV_PATH");
-    /*csman client var*/
-    const std::string home_path = std::getenv("HOME");
-    config_path = home_path + "/.csman_config";
 
-    csman_path = home_path + "/.csman/";
-    pac_repo = COVSCRIPT_HOME + "/pac_repo";
-    sources_idx_path = csman_path + "/sources.idx";
-    max_reconnect_time = 5;
+void context::initialize_val() {
+
+    vars["home_path"] =
+#ifdef __linux__
+            std::getenv("HOME");
+#elif _WIN32
+            std::getenv("USERPROFILE");
+#elif __APPLE__
+    std::getenv(""); // 改
+#endif
+    const std::string &home = vars["home_path"];
+
+    /*CovScript var*/
+    if (std::getenv("COVSCRIPT_HOME") != nullptr){
+        vars["COVSCRIPT_HOME"] = std::getenv("COVSCRIPT_HOME");
+        only_read_vars.insert("COVSCRIPT_HOME");
+    }
+    else {
+        vars["COVSCRIPT_HOME"] =
+#ifdef __linux__
+"/usr/share/covscript/";
+#elif _WIN32
+home + "\\Documents\\CovScript\\";
+#elif __APPLE__
+        "/Application/CovScript.app/Contents/";
+#endif
+    }
+//**********************
+    if (std::getenv("CS_IMPORT_PATH") != nullptr) {
+        vars["CS_IMPORT_PATH"] = std::getenv("CS_IMPORT_PATH");
+        only_read_vars.insert("CS_IMPORT_PATH");
+    }
+    else {
+        vars["CS_IMPORT_PATH"] =
+#ifdef __linux__
+"";
+#elif _WIN32
+home + " ";
+#elif __APPLE__
+        "";
+#endif
+    }
+//**********************
+    if (std::getenv("CS_DEV_PATH") != nullptr) {
+        vars["CS_DEV_PATH"] = std::getenv("CS_DEV_PATH");
+        only_read_vars.insert("CS_DEV_PATH");
+    }
+    else {
+        vars["CS_DEV_PATH"] =
+#ifdef __linux__
+"";
+#elif _WIN32
+home + "";
+#elif __APPLE__
+        "";
+#endif
+    }
+    /*csman client var*/
+    vars["config_path"] = home + "/.csman_config";
+    vars["csman_path"] = home + "/.csman/";
+    vars["pac_repo_path"] = vars["COVSCRIPT_HOME"] + "/pac_repo/";
+    vars["sources_idx_path"] = vars["csman_path"] + "/sources_idx";
+    vars["max_reconnect_time"] = "5";
 }
 void context::get_covscript_env() {
     mpp::process_builder builder;
@@ -107,81 +178,53 @@ void context::get_covscript_env() {
     return;
 }
 void context::read_config() {
+    const std::string &config_path = vars["config_path"];
+
     std::ifstream ifs(config_path);
-    if(!ifs.is_open()){
-        ifs.close();
+    if (!path_exist(config_path)) {
         std::ofstream ofs(config_path);
         ofs.close();
-        return ;
+        return;
     }
-    /*
-     * 配置文件暂时不支持识别注释
-     */
-    std::string key,var;
-    while(ifs>>key && ifs>>var){
-        if(var == "default") continue;
-        if(key=="csman_path") this->csman_path = var;
-        else if(key=="pac_repo")pac_repo = var;
-        else if(key=="sources_idx_path") sources_idx_path = var;
-        else if(key=="max_reconnect_time") max_reconnect_time = std::stoi(var);
+
+    std::vector<std::string> args;
+    std::string text;
+    while (std::getline(ifs, text)) {
+        str_split(args,text);
+        if (vars.count(args[0]) > 0) { // 如果先前初始化vars时添加过此key，则key为规定内key
+            vars[args[0]] = args[2]; // "key" "=" "var"
+            config_data.lines.push_back(Config_Data::line_data(args[0], false));
+        }
+        else if(text[0]=='#')
+            config_data.lines.push_back(Config_Data::line_data(text,true));
+        else throw std::runtime_error("format of .csman_config is incorrect.");
     }
-    return ;
+    return;
+}
+void context::wirte_config() {
+    std::ofstream ofs(vars["config_path"]);
+    for(auto &l:config_data.lines){
+        if(l.is_comment)
+            ofs<<l.text<<std::endl;
+        else
+            ofs<<l.text+" = "+vars[l.text]<<std::endl;
+    }
+    ofs.close();
 }
 void context::show_all() {
-    std::cout<<"CovScript COVSCRIPT_HOME = \""<<COVSCRIPT_HOME<<"\""<<std::endl
-            <<"CovScript CS_IMPORT_PATH = \""<<CS_IMPORT_PATH<<"\""<<std::endl
-            <<"CovScript CS_DEV_PATH = \""<<CS_DEV_PATH<<"\""<<std::endl
-            <<"csman_path = \""<<csman_path<<"\""<<std::endl
-            <<"csman pac_repo = \""<<pac_repo<<"\""<<std::endl
-            <<"csman config_path = \""<<config_path<<"\""<<std::endl
-            <<"CovScript sources_idx_path = \""<<sources_idx_path<<"\""<<std::endl
-            <<"max reconnect time = "<<max_reconnect_time<<std::endl;
+    for(auto &x: vars)
+        std::cout<<x.first<<" = "<<x.second<<std::endl;
 }
-void context::show(const std::string &key){
-    if(key=="COVSCRIPT_HOME")
-        std::cout<<"CovScript COVSCRIPT_HOME = \""<<COVSCRIPT_HOME<<"\""<<std::endl;
-    else if(key=="CS_IMPORT_PATH")
-        std::cout<<"CovScript CS_IMPORT_PATH = \""<<CS_IMPORT_PATH<<"\""<<std::endl;
-    else if(key=="CS_DEV_PATH")
-        std::cout<<"CovScript CS_DEV_PATH = \""<<CS_DEV_PATH<<"\""<<std::endl;
-    else if(key=="csman_path")
-        std::cout<<"csman_path = \""<<csman_path<<"\""<<std::endl;
-    else if(key=="pac_repo")
-        std::cout<<"csman pac_repo = \""<<pac_repo<<"\""<<std::endl;
-    else if(key=="config_path")
-        std::cout<<"csman config_path = \""<<config_path<<"\""<<std::endl;
-    else if(key=="sources_idx_path")
-        std::cout<<"CovScript sources_idx_path = \""<<sources_idx_path<<"\""<<std::endl;
-    else if(key=="max_reconnect_time")
-        std::cout<<"max reconnect time = "<<max_reconnect_time<<std::endl;
+void context::show(const std::string &key) {
+    if(vars.count(key)>0)
+        std::cout<<key<<" = "<<vars[key]<<std::endl;
     else
-        std::cout<<"no argument named \""<<key<<"\"!"<<std::endl;
+        std::cout<<"no configure variable named \""<<key<<"\"!"<<std::endl;
 }
-
-void context::set(const std::string &key,const std::string &val){
-    if(key=="COVSCRIPT_HOME"){
+void context::set(const std::string &key, const std::string &val) {
+    if(vars.count(key)>0 || only_read_vars.find(key)==only_read_vars.end()){
+        vars[key] = val;
+        std::cout<<"set "<<key<<" as \""<<val<<"\" successfully."<<std::endl;
     }
-    else if(key=="CS_IMPORT_PATH"){
-
-    }
-    else if(key=="CS_DEV_PATH"){
-
-    }
-    else if(key=="csman_path"){
-
-    }
-    else if(key=="pac_repo"){
-
-    }
-    else if(key=="config_path"){
-
-    }
-    else if(key=="sources_idx_path"){
-
-    }
-    else if(key=="max_reconnect_time"){
-
-    }
-    else
-        std::cout<<"no argument named \""<<key<<"\"!"<<std::endl;
+        std::cout << "no configure variable named \"" << key << "\"!" << std::endl;
 }

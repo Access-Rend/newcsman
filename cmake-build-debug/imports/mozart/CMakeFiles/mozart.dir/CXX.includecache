@@ -172,7 +172,7 @@ mpp_foundation/stream.hpp
 mpp_string/string.hpp
 ../imports/mozart/include/mozart++/mpp_string/string.hpp
 
-/mnt/d/mywork/newcsman/imports/mozart/src/core.cpp
+D:/mywork/newcsman/imports/mozart/src/core.cpp
 mozart++/core
 -
 shlobj.h
@@ -184,11 +184,11 @@ Dbghelp.h
 cxxabi.h
 -
 
-/mnt/d/mywork/newcsman/imports/mozart/src/process.cpp
+D:/mywork/newcsman/imports/mozart/src/process.cpp
 mozart++/process
 -
 
-/mnt/d/mywork/newcsman/imports/mozart/src/process_unix.cpp
+D:/mywork/newcsman/imports/mozart/src/process_unix.cpp
 mozart++/core
 -
 mozart++/process
@@ -220,7 +220,7 @@ csignal
 crt_externs.h
 -
 
-/mnt/d/mywork/newcsman/imports/mozart/src/process_win32.cpp
+D:/mywork/newcsman/imports/mozart/src/process_win32.cpp
 mozart++/core
 -
 mozart++/process

@@ -1,3 +1,4 @@
+#pragma once
 #include<unordered_map>
 #include<iostream>
 #include<fstream>
@@ -8,7 +9,6 @@
 class pac_repo{
 private:
     context *cxt;
-
 public:/*公开类*/
     class pac_data{
     public:
@@ -17,19 +17,17 @@ public:/*公开类*/
     };
     std::unordered_map<std::string, pac_data>local_pac;
 public:/*公开接口*/
-    pac_repo(const context *&cxt){
-        std::ifstream ifs(cxt->pac_repo);
+    pac_repo(context *cxt) : cxt(cxt){
+        std::ifstream ifs(cxt->vars["pac_repo_path"]);
         if(!ifs.is_open())
             throw std::runtime_error("opening \"pac_repo\" failed.");
-
         ifs.close();
         return;
     }
     ~pac_repo(){
-        std::ofstream ofs(cxt->pac_repo);
+        std::ofstream ofs(cxt->vars["pac_repo_path"]);
         if(!ofs.is_open())
             throw std::runtime_error("saving \"pac_repo\" failed.");
-
         return;
     }
     void update_install(const std::string &name, const std::string &ver, bool is_available){

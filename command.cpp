@@ -1,6 +1,7 @@
 //
 // Created by Rend on 2020/12/3.
 //
+#pragma once
 #include"pac_repo.hpp"
 #include"global.hpp"
 #include"http.hpp"
@@ -21,10 +22,10 @@ private:
     std::string predicate, object;  // 谓语，宾语
 
     void download_unzip_pac(const std::string &name,const std::string &ver,const std::string &url){
-        std::string dir_path = cxt->pac_repo + "/" + name + "/" + ver + "/";
+        std::string dir_path = cxt->vars["pac_repo_path"] + "/" + name + "/" + ver + "/";
         std::string zip_path = dir_path + "pac.zip";
         try{
-            http_get(url, zip_path, cxt->max_reconnect_time);
+            http_get(url, zip_path, std::stoi(cxt->vars["max_reconnect_time"]));
             cov::zip_extract(zip_path, dir_path);
         }
         catch(std::exception &e){
@@ -33,12 +34,11 @@ private:
     }
 
     void delete_pac(std::string& name, std::string& ver){
-        std::string target(cxt->pac_repo + '/' + name);
-        if(!path_exist(target))    //  target 路径不正确
-            throw std::runtime_error("package: " + name + " " + ver + " is not found, uninstall failed.");
-        if(!remove_dir(target));    //删除目标路径下所有文件, 这个函数的返回值是成功删除的个数
+        std::string pac_path(cxt->vars["pac_repo_path"] + '/' + name);
+        if(!path_exist(pac_path))    //  pac_path 路径不正确
+            return ;
+        if(!remove_dir(pac_path))    //删除目标路径下所有文件
             throw std::runtime_error("uninstall pack" + name + " " + ver + " failed, please check whether it's using by other progress.");
-        return;
     }
 
     const std::string HELP = "usage: csman <command> [objects] [args]\n"
